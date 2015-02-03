@@ -45,8 +45,12 @@ int fcall(char* argv[]){
     return n;
 }
 
-char**  breakitup (char * cstr2){
+char**  breakitup (std::string hamma){
         char* sp2;
+
+        char *cstr2 = new char [hamma.length() + 1];
+        strcpy(cstr2, hamma.c_str());
+
         char*  pch;
         static char* argv[1024];
         argv[0] = (char*)"";
@@ -61,10 +65,15 @@ char**  breakitup (char * cstr2){
         return  argv;
 }
 
-int findclosest(char * sift){
-    char* pcha = strchr(sift, ';');
-    char* pchb = strstr(sift, "&&");
-    char* pchc = strstr(sift, "||");
+int findclosest(std::string bobo ){
+
+    int cha = bobo.find(";");
+    int chb = bobo.find("&&");
+    int chc = bobo.find("||");
+
+    bool pcha = (cha != std::string::npos);
+    bool pchb = (chb != std::string::npos);
+    bool pchc = (chc != std::string::npos);
 
     if (!pcha && !pchb && !pchc){
         return 0;
@@ -79,28 +88,28 @@ int findclosest(char * sift){
         return 3;
     }
     else if (!pchc){
-        if (pcha < pchb)
+        if (cha < chb)
             return 1;
         else
             return 2;
     }
     else if (!pchb){
-        if(pcha < pchc)
+        if(cha < chc)
             return 1;
         else
             return 3;
     }
     else if (!pcha){
-        if (pchb < pchc)
+        if (chb < chc)
             return 2;
         else
             return 3;
     }
     else
     {
-        if (pcha < pchb && pcha < pchc)
+        if (cha < chb && cha < chc)
             return 1;
-        else if (pchb < pcha && pchb < pchc)
+        else if (chb < cha && chb < chc)
             return 2;
         else
             return 3;
@@ -121,6 +130,11 @@ int main(){
 
         cstr2 = strtok(cstr, "#");
 
+        std::string smoothly(cstr2);
+
+
+
+/*
         char *cstr3;
         char* sp;
         char mustpass =0; //2 must pass; 1 must fail; 0 doesn't care
@@ -128,38 +142,42 @@ int main(){
         char* e;
         e = (char*) "";
         int fc;
-
+        char* brokenfc= new char[1024];
+        int lilmor=0;
+        char* brokench = new char[1024];
+        strcpy(brokenfc, cstr2);
 
         std::vector<std::pair <char, char *> > conn;
-        std::cerr << "HLF\n";
         if (cstr2!= NULL)fc = findclosest(cstr2);
             else fc = 0;
-        std::cerr << "HLF\n";
         switch (fc){
                 case 0:
-                std::cout << "that's it";
+            //    std::cout << "that's it";
                 cstr3 = strtok_r(cstr2, ";", &sp);
                 if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
                     else conn.push_back(std::make_pair(0, cstr3));
                 break;
 
                 case 1:
-                std::cout << ";";
+          //      std::cout << ";";
                 cstr3 = strtok_r(cstr2, ";", &sp);
+                lilmor = 1;
                 if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
                     else conn.push_back(std::make_pair(0, cstr3));
                 break;
 
                 case 2:
-                std::cout << "&&";
+        //        std::cout << "&&";
                 cstr3 = strtok_r(cstr2, "&", &sp);
+                lilmor = 2;
                 if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
                     else conn.push_back(std::make_pair(2, cstr3));
                 break;
 
                 case 3:
-                std::cout << "||";
+              //  std::cout << "||";
                 cstr3 = strtok_r(cstr2, "|", &sp);
+                lilmor = 2;
                 if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
                     else conn.push_back(std::make_pair(1, cstr3));
                 break;
@@ -168,10 +186,11 @@ int main(){
                 std::cout << "UH OH!";
         }
 
-        if (cstr3!= NULL)fc = findclosest(cstr3);
-            else fc = 0;
+        puts(brokenfc+ 4 + lilmor );
 
-        std::cerr << "HLF\n";
+       // if(cstr3!= NULL)fc = findclosest(brokenfc + 4+ lilmor);
+         //   else fc = 0;
+
         while (cstr3 != NULL){
             switch (fc){
                     case 0:
@@ -184,6 +203,7 @@ int main(){
                     case 1:
                     std::cout << ";";
                     cstr3 = strtok_r(NULL, ";", &sp);
+                    lilmor = 1;
                      if (cstr3== NULL)conn.push_back(std::make_pair(0,e));
                     else conn.push_back(std::make_pair(0, cstr3));
                     break;
@@ -191,6 +211,7 @@ int main(){
                     case 2:
                     std::cout << "&&";
                     cstr3 = strtok_r(NULL, "&", &sp);
+                    lilmor=2;
                      if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
                     else conn.push_back(std::make_pair(2, cstr3));
                     break;
@@ -198,6 +219,7 @@ int main(){
                     case 3:
                     std::cout << "||";
                     cstr3 = strtok_r(NULL, "|", &sp);
+                    lilmor=2;
                      if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
                     else conn.push_back(std::make_pair(1, cstr3));
                     break;
@@ -206,12 +228,12 @@ int main(){
                     std::cout << "UH OH!";
             }
 
-            if (cstr3!= NULL)fc = findclosest(cstr3);
+        if (cstr3!= NULL)fc = findclosest(brokenfc + strlen(cstr3)+ lilmor);
             else fc = 0;
 
         }
-
-        std::cerr << "HLF\n";
+*/
+      //  std::cerr << "HLF: " << fc << "\n";
        for(int i = 0; i < conn.size(); i++){
 
                int a = -1;
@@ -228,7 +250,8 @@ int main(){
             }
             else
                 didpass = 0;
-            stdcerr << (int)cancheck << "\n";
+            puts(conn.at(i).second);
+            std::cerr << (int)cancheck << "\n";
             if (cancheck){
                 a = fcall(breakitup(conn.at(i).second));
                  if (a < 0)
@@ -243,6 +266,7 @@ int main(){
 
             mustpass = conn.at(i).first;
         }
+
     }
     skippy:
     std::cout << "Ar revoir!\n";
