@@ -52,11 +52,16 @@ int main(){
         char *cstr = new char [chunky.length() + 1];
         strcpy(cstr, chunky.c_str());
 
+        char * cstr2;
+
+        cstr2 = strtok(cstr, "#");
+
+
         char*  pch;
         char* argv[1024];
         argv[0] = (char*)"";
 
-        pch = strtok(cstr, " ");
+        pch = strtok(cstr2, " ");
 
         for( int p = 0; pch != NULL; p++){
             argv[p] = pch;
