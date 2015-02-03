@@ -7,7 +7,8 @@
 #include <sys/wait.h>
 #include <cstring>
 #include <cstdlib>
-
+#include <vector>
+#include <utility>
 
 int fcall(char* argv[]){
     if (strlen(argv[0]) == 0){
@@ -18,7 +19,7 @@ int fcall(char* argv[]){
 
         return 1;
     }
-
+    in n = 0;
     int pid = fork();
     if(pid == -1)//fork’s return value for an error is -1
     {
@@ -30,9 +31,10 @@ int fcall(char* argv[]){
     else if(pid == 0)//when pid is 0 you are in the child process
     {
 
-       if (0 < execvp(argv[0], argv))
+       if (0 < execvp(argv[0], argv)){
+           n = -1;
            perror("execvp");
-
+       }
        exit(1);  //when the child process finishes doing what we want it to, cout,
                  //we want to kill the child process so it doesn’t go on in the program so we exit
     }
@@ -40,19 +42,20 @@ int fcall(char* argv[]){
         if (-1 == wait(0))
             perror("wait");
     }
-    return 0;
+    return n;
 }
 
 char**  breakitup (char * cstr2){
+        char* sp2;
         char*  pch;
         static char* argv[1024];
         argv[0] = (char*)"";
 
-        pch = strtok(cstr2, " ");
+        pch = strtok_r(cstr2, " ", &sp2);
 
         for( int p = 0; pch != NULL; p++){
             argv[p] = pch;
-            pch = strtok(NULL, " ");
+            pch = strtok_r(NULL, " ", &sp2);
         }
 
         return  argv;
@@ -119,83 +122,131 @@ int main(){
         cstr2 = strtok(cstr, "#");
 
         char *cstr3;
+        char* sp;
+        char mustpass =0; //2 must pass; 1 must fail; 0 doesn't care
+        char didpass = 0;
+
+        std::vector<std::pair <char, char *> > conn;
+
         int fc = findclosest(cstr2);
         switch (fc){
                 case 0:
                 std::cout << "that's it";
-                cstr3 = cstr2;
+                cstr3 = strtok_r(cstr2, ";", &sp);
+                conn.push_back(std::make_pair(0, cstr3));
                 break;
 
                 case 1:
                 std::cout << ";";
-                cstr3 = strtok(cstr2, ";");
+                cstr3 = strtok_r(cstr2, ";", &sp);
+                conn.push_back(std::make_pair(0, cstr3));
                 break;
 
                 case 2:
                 std::cout << "&&";
-                cstr3 = strtok(cstr2, "&");
-                cstr3 = strtok(NULL, "&");
+                cstr3 = strtok_r(cstr2, "&", &sp);
+                conn.push_back(std::make_pair(2, cstr3));
                 break;
 
                 case 3:
                 std::cout << "||";
-                cstr3 = strtok(cstr2, "|");
-                cstr3 = strtok(NULL, "|");
+                cstr3 = strtok_r(cstr2, "|", &sp);
+                conn.push_back(std::make_pair(1, cstr3));
                 break;
 
                 default:
                 std::cout << "UH OH!";
         }
 
-       char* sp;
-       sp = cstr3;
+        while (cstr3 != NULL){
+            switch (fc){
+                    case 0:
+                    std::cout << "that's it";
+                    cstr3 = strtok_r(NULL, ";", &sp);
+                    if (cstr3!= NULL)conn.push_back(std::make_pair(0, cstr3));
+                    break;
 
-       puts(cstr3);
-      // while(cstr3 != NULL)
-      // {
-            char mustfail =0;
+                    case 1:
+                    std::cout << ";";
+                    cstr3 = strtok_r(NULL, ";", &sp);
+                     if (cstr3!= NULL)conn.push_back(std::make_pair(0, cstr3));
+                    break;
+
+                    case 2:
+                    std::cout << "&&";
+                    cstr3 = strtok_r(NULL, "&", &sp);
+                     if (cstr3!= NULL)conn.push_back(std::make_pair(2, cstr3));
+                    break;
+
+                    case 3:
+                    std::cout << "||";
+                    cstr3 = strtok_r(NULL, "|", &sp);
+                     if (cstr3!= NULL)conn.push_back(std::make_pair(1, cstr3));
+                    break;
+
+                    default:
+                    std::cout << "UH OH!";
+            }
+        }
+
+            //puts(cstr3);
+           // fc = findclosest(cstr3);
+           // std::cerr << fc;
+       // }
+      // puts(cstr3);
+             // puts(buf);
+       for(int i = 0; i < conn.size(); i++)
+       {
+
+       /*     char mustfail =0;
             char mustpass =0;
+            char leftoverand = 0;
+            char leftoveror = 0;
 
             int a = fcall(breakitup(cstr3));
+        */
 
+            if (mustpass == 2 && didpass = 1){
+                int a = fcall(breakitup(conn.at(i).second));
+            }
             if (a > 0){
                 delete[] cstr;
                 goto skippy;
             }
 
-            fc = findclosest(cstr3);
 
-            std::cerr << "so hot\n";
+            mustpass = conn.at(i).first;
+        }
+        /*
+            fc = findclosest(cstr3);
+            std::cout << fc;
             switch (fc){
                 case 0:
-                cstr3 = strtok(sp, ";");
+                cstr3 = strtok_r(NULL, ";", &sp);
                 break;
 
                 case 1:
                 std::cout << ";";
-                cstr3 = strtok(sp, ";");
+                cstr3 = strtok_r(NULL, ";", &sp);
                 break;
 
                 case 2:
                 std::cout << "&&";
-                cstr3 = strtok(sp, "&");
-                cstr3 = strtok(sp, "&");
+                cstr3 = strtok_r(NULL, "&", &sp );
                 break;
 
                 case 3:
                 std::cout << "||";
-                cstr3 = strtok(sp, "|");
-                cstr3 = strtok(sp, "|");
+                cstr3 = strtok_r(NULL, "|", &sp);
                 break;
 
                 default:
-                std::cout << "UH OH!";
+                std::cout << "e! impossible outcome!";
            }
 
-           sp = cstr3;
-           if (cstr3 != NULL)
-               puts(cstr3);
-      // }
+          if (cstr3 != NULL)
+              puts(cstr3);*/
+       //}
     }
     skippy:
     std::cout << "Ar revoir!\n";
