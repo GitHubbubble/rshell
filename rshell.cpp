@@ -118,38 +118,84 @@ int main(){
 
         cstr2 = strtok(cstr, "#");
 
-        while(1)
-        {
+        char *cstr3;
+        int fc = findclosest(cstr2);
+        switch (fc){
+                case 0:
+                std::cout << "that's it";
+                cstr3 = cstr2;
+                break;
 
-            int fc = findclosest(cstr2);
-
-            switch (fc){
                 case 1:
                 std::cout << ";";
+                cstr3 = strtok(cstr2, ";");
                 break;
 
                 case 2:
                 std::cout << "&&";
+                cstr3 = strtok(cstr2, "&");
+                cstr3 = strtok(NULL, "&");
                 break;
 
                 case 3:
                 std::cout << "||";
+                cstr3 = strtok(cstr2, "|");
+                cstr3 = strtok(NULL, "|");
                 break;
 
                 default:
                 std::cout << "UH OH!";
-            }
+        }
+
+       char* sp;
+       sp = cstr3;
+
+       puts(cstr3);
+      // while(cstr3 != NULL)
+      // {
             char mustfail =0;
             char mustpass =0;
 
-
-            int a = fcall(breakitup(cstr2));
+            int a = fcall(breakitup(cstr3));
 
             if (a > 0){
                 delete[] cstr;
                 goto skippy;
             }
-        }
+
+            fc = findclosest(cstr3);
+
+            std::cerr << "so hot\n";
+            switch (fc){
+                case 0:
+                cstr3 = strtok(sp, ";");
+                break;
+
+                case 1:
+                std::cout << ";";
+                cstr3 = strtok(sp, ";");
+                break;
+
+                case 2:
+                std::cout << "&&";
+                cstr3 = strtok(sp, "&");
+                cstr3 = strtok(sp, "&");
+                break;
+
+                case 3:
+                std::cout << "||";
+                cstr3 = strtok(sp, "|");
+                cstr3 = strtok(sp, "|");
+                break;
+
+                default:
+                std::cout << "UH OH!";
+           }
+
+           sp = cstr3;
+           if (cstr3 != NULL)
+               puts(cstr3);
+      // }
     }
     skippy:
     std::cout << "Ar revoir!\n";
