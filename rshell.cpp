@@ -19,7 +19,7 @@ int fcall(char* argv[]){
 
         return 1;
     }
-    in n = 0;
+    int n = 0;
     int pid = fork();
     if(pid == -1)//fork’s return value for an error is -1
     {
@@ -125,128 +125,124 @@ int main(){
         char* sp;
         char mustpass =0; //2 must pass; 1 must fail; 0 doesn't care
         char didpass = 0;
+        char* e;
+        e = (char*) "";
+        int fc;
+
 
         std::vector<std::pair <char, char *> > conn;
-
-        int fc = findclosest(cstr2);
+        std::cerr << "HLF\n";
+        if (cstr2!= NULL)fc = findclosest(cstr2);
+            else fc = 0;
+        std::cerr << "HLF\n";
         switch (fc){
                 case 0:
                 std::cout << "that's it";
                 cstr3 = strtok_r(cstr2, ";", &sp);
-                conn.push_back(std::make_pair(0, cstr3));
+                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
+                    else conn.push_back(std::make_pair(0, cstr3));
                 break;
 
                 case 1:
                 std::cout << ";";
                 cstr3 = strtok_r(cstr2, ";", &sp);
-                conn.push_back(std::make_pair(0, cstr3));
+                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
+                    else conn.push_back(std::make_pair(0, cstr3));
                 break;
 
                 case 2:
                 std::cout << "&&";
                 cstr3 = strtok_r(cstr2, "&", &sp);
-                conn.push_back(std::make_pair(2, cstr3));
+                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
+                    else conn.push_back(std::make_pair(2, cstr3));
                 break;
 
                 case 3:
                 std::cout << "||";
                 cstr3 = strtok_r(cstr2, "|", &sp);
-                conn.push_back(std::make_pair(1, cstr3));
+                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
+                    else conn.push_back(std::make_pair(1, cstr3));
                 break;
 
                 default:
                 std::cout << "UH OH!";
         }
 
+        if (cstr3!= NULL)fc = findclosest(cstr3);
+            else fc = 0;
+
+        std::cerr << "HLF\n";
         while (cstr3 != NULL){
             switch (fc){
                     case 0:
                     std::cout << "that's it";
                     cstr3 = strtok_r(NULL, ";", &sp);
-                    if (cstr3!= NULL)conn.push_back(std::make_pair(0, cstr3));
+                    if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
+                    else conn.push_back(std::make_pair(0, cstr3));
                     break;
 
                     case 1:
                     std::cout << ";";
                     cstr3 = strtok_r(NULL, ";", &sp);
-                     if (cstr3!= NULL)conn.push_back(std::make_pair(0, cstr3));
+                     if (cstr3== NULL)conn.push_back(std::make_pair(0,e));
+                    else conn.push_back(std::make_pair(0, cstr3));
                     break;
 
                     case 2:
                     std::cout << "&&";
                     cstr3 = strtok_r(NULL, "&", &sp);
-                     if (cstr3!= NULL)conn.push_back(std::make_pair(2, cstr3));
+                     if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
+                    else conn.push_back(std::make_pair(2, cstr3));
                     break;
 
                     case 3:
                     std::cout << "||";
                     cstr3 = strtok_r(NULL, "|", &sp);
-                     if (cstr3!= NULL)conn.push_back(std::make_pair(1, cstr3));
+                     if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
+                    else conn.push_back(std::make_pair(1, cstr3));
                     break;
 
                     default:
                     std::cout << "UH OH!";
             }
+
+            if (cstr3!= NULL)fc = findclosest(cstr3);
+            else fc = 0;
+
         }
 
-            //puts(cstr3);
-           // fc = findclosest(cstr3);
-           // std::cerr << fc;
-       // }
-      // puts(cstr3);
-             // puts(buf);
-       for(int i = 0; i < conn.size(); i++)
-       {
+        std::cerr << "HLF\n";
+       for(int i = 0; i < conn.size(); i++){
 
-       /*     char mustfail =0;
-            char mustpass =0;
-            char leftoverand = 0;
-            char leftoveror = 0;
-
-            int a = fcall(breakitup(cstr3));
-        */
-
-            if (mustpass == 2 && didpass = 1){
-                int a = fcall(breakitup(conn.at(i).second));
+               int a = -1;
+               char cancheck = 0;
+        std::cerr << (int)mustpass << (int)didpass << "\n";
+            if (mustpass == 2 && didpass == 1){
+                cancheck = 1;
             }
-            if (a > 0){
-                delete[] cstr;
-                goto skippy;
+            else if (mustpass == 1 && didpass == 0){
+                cancheck = 1;
             }
-
+            else if (mustpass == 0){
+                cancheck =1;
+            }
+            else
+                didpass = 0;
+            stdcerr << (int)cancheck << "\n";
+            if (cancheck){
+                a = fcall(breakitup(conn.at(i).second));
+                 if (a < 0)
+                    didpass = 0;
+                 else if (a == 0)
+                    didpass = 1;
+                else if (a > 0){
+                    delete[] cstr;
+                    goto skippy;
+                }
+            }
 
             mustpass = conn.at(i).first;
         }
-        /*
-            fc = findclosest(cstr3);
-            std::cout << fc;
-            switch (fc){
-                case 0:
-                cstr3 = strtok_r(NULL, ";", &sp);
-                break;
-
-                case 1:
-                std::cout << ";";
-                cstr3 = strtok_r(NULL, ";", &sp);
-                break;
-
-                case 2:
-                std::cout << "&&";
-                cstr3 = strtok_r(NULL, "&", &sp );
-                break;
-
-                case 3:
-                std::cout << "||";
-                cstr3 = strtok_r(NULL, "|", &sp);
-                break;
-
-                default:
-                std::cout << "e! impossible outcome!";
-           }
-
-          if (cstr3 != NULL)
-              puts(cstr3);*/
-       //}
     }
     skippy:
     std::cout << "Ar revoir!\n";
