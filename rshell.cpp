@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
@@ -8,14 +9,28 @@
 #include <cstdlib>
 int main(){
 
+    std::string chunky;
+    std::getline(std::cin, chunky);
+
+    char *cstr = new char [chunky.length() + 1];
+    strcpy(cstr, chunky.c_str());
+
+    char*  pch;
+    char* argv[1024];
+    pch = strtok(cstr, " ");
+
+    for( int p = 0; pch != NULL; p++){
+        argv[p] = pch;
+        pch = strtok(NULL, " ");
+    }
 
 
-   char* argv[3];
+   /*char* argv[3];
    argv[0] = "ls";
 
    argv[1] =  "-t";
    argv[2] =  "-l";
-
+    */
 
   int pid = fork();
     if(pid == -1)//fork’s return value for an error is -1
@@ -39,5 +54,6 @@ int main(){
             perror("wait");
 
     }
+    delete [] cstr;
     return 0;
 }
