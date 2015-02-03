@@ -10,6 +10,10 @@
 
 
 int fcall(char* argv[]){
+    if (strlen(argv[0]) == 0){
+
+        return -1;
+    }
     if (!strcmp(argv[0], "exit")){
 
         return 1;
@@ -50,6 +54,8 @@ int main(){
 
         char*  pch;
         char* argv[1024];
+        argv[0] = (char*)"";
+
         pch = strtok(cstr, " ");
 
         for( int p = 0; pch != NULL; p++){
@@ -57,7 +63,7 @@ int main(){
             pch = strtok(NULL, " ");
         }
 
-        if (fcall(argv)){
+        if (fcall(argv) > 0){
             delete[] cstr;
             goto skippy;
         }
