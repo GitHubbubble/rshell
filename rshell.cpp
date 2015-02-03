@@ -57,6 +57,54 @@ char**  breakitup (char * cstr2){
 
         return  argv;
 }
+
+int findclosest(char * sift){
+    char* pcha = strchr(sift, ';');
+    char* pchb = strstr(sift, "&&");
+    char* pchc = strstr(sift, "||");
+
+    if (!pcha && !pchb && !pchc){
+        return 0;
+    }
+    else if (!pchb && !pchc){
+        return 1;
+    }
+    else if (!pcha && !pchc){
+        return 2;
+    }
+    else if (!pcha && !pchb){
+        return 3;
+    }
+    else if (!pchc){
+        if (pcha < pchb)
+            return 1;
+        else
+            return 2;
+    }
+    else if (!pchb){
+        if(pcha < pchc)
+            return 1;
+        else
+            return 3;
+    }
+    else if (!pcha){
+        if (pchb < pchc)
+            return 2;
+        else
+            return 3;
+    }
+    else
+    {
+        if (pcha < pchb && pcha < pchc)
+            return 1;
+        else if (pchb < pcha && pchb < pchc)
+            return 2;
+        else
+            return 3;
+    }
+
+
+}
 int main(){
 
     while(1){
@@ -70,15 +118,37 @@ int main(){
 
         cstr2 = strtok(cstr, "#");
 
-        char wasAND =0;
-        char wasOR =0;
+        while(1)
+        {
+
+            int fc = findclosest(cstr2);
+
+            switch (fc){
+                case 1:
+                std::cout << ";";
+                break;
+
+                case 2:
+                std::cout << "&&";
+                break;
+
+                case 3:
+                std::cout << "||";
+                break;
+
+                default:
+                std::cout << "UH OH!";
+            }
+            char mustfail =0;
+            char mustpass =0;
 
 
-        int a = fcall(breakitup(cstr2));
+            int a = fcall(breakitup(cstr2));
 
-        if (a > 0){
-            delete[] cstr;
-            goto skippy;
+            if (a > 0){
+                delete[] cstr;
+                goto skippy;
+            }
         }
     }
     skippy:
