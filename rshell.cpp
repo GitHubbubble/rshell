@@ -43,6 +43,20 @@ int fcall(char* argv[]){
     return 0;
 }
 
+char**  breakitup (char * cstr2){
+        char*  pch;
+        static char* argv[1024];
+        argv[0] = (char*)"";
+
+        pch = strtok(cstr2, " ");
+
+        for( int p = 0; pch != NULL; p++){
+            argv[p] = pch;
+            pch = strtok(NULL, " ");
+        }
+
+        return  argv;
+}
 int main(){
 
     while(1){
@@ -56,19 +70,13 @@ int main(){
 
         cstr2 = strtok(cstr, "#");
 
+        char wasAND =0;
+        char wasOR =0;
 
-        char*  pch;
-        char* argv[1024];
-        argv[0] = (char*)"";
 
-        pch = strtok(cstr2, " ");
+        int a = fcall(breakitup(cstr2));
 
-        for( int p = 0; pch != NULL; p++){
-            argv[p] = pch;
-            pch = strtok(NULL, " ");
-        }
-
-        if (fcall(argv) > 0){
+        if (a > 0){
             delete[] cstr;
             goto skippy;
         }
