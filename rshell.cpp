@@ -125,115 +125,48 @@ int main(){
 
         char *cstr = new char [chunky.length() + 1];
         strcpy(cstr, chunky.c_str());
-
         char * cstr2;
-
         cstr2 = strtok(cstr, "#");
-
         std::string smoothly(cstr2);
 
+       ;
 
+        std::vector<std::pair<char, std::string> conn;
 
-/*
-        char *cstr3;
-        char* sp;
-        char mustpass =0; //2 must pass; 1 must fail; 0 doesn't care
-        char didpass = 0;
-        char* e;
-        e = (char*) "";
-        int fc;
-        char* brokenfc= new char[1024];
-        int lilmor=0;
-        char* brokench = new char[1024];
-        strcpy(brokenfc, cstr2);
+        fc = findclosest(smoothly);
 
-        std::vector<std::pair <char, char *> > conn;
-        if (cstr2!= NULL)fc = findclosest(cstr2);
-            else fc = 0;
         switch (fc){
                 case 0:
             //    std::cout << "that's it";
-                cstr3 = strtok_r(cstr2, ";", &sp);
-                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
-                    else conn.push_back(std::make_pair(0, cstr3));
+                    conn.push_back(std::makepair(0,smoothly));
                 break;
 
                 case 1:
           //      std::cout << ";";
-                cstr3 = strtok_r(cstr2, ";", &sp);
-                lilmor = 1;
-                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
-                    else conn.push_back(std::make_pair(0, cstr3));
+                  int temp = cstr.find(";");
+                  conn.push_back(std::makepair(1,smoothly.substr(1, temp)));
+                  smoothly = smoothly.substr(1, temp+1 );
                 break;
 
                 case 2:
         //        std::cout << "&&";
-                cstr3 = strtok_r(cstr2, "&", &sp);
-                lilmor = 2;
-                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
-                    else conn.push_back(std::make_pair(2, cstr3));
+                    int temp = cstr.find(";");
+                  conn.push_back(std::makepair(2,smoothly.substr(1, temp)));
+                  smoothly = smoothly.substr(1, temp+2 );
                 break;
 
                 case 3:
               //  std::cout << "||";
-                cstr3 = strtok_r(cstr2, "|", &sp);
-                lilmor = 2;
-                if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
-                    else conn.push_back(std::make_pair(1, cstr3));
+                   int temp = cstr.find(";");
+                  conn.push_back(std::makepair(2,smoothly.substr(1, temp)));
+                  smoothly = smoothly.substr(1, temp+2 );
                 break;
 
                 default:
                 std::cout << "UH OH!";
         }
 
-        puts(brokenfc+ 4 + lilmor );
 
-       // if(cstr3!= NULL)fc = findclosest(brokenfc + 4+ lilmor);
-         //   else fc = 0;
-
-        while (cstr3 != NULL){
-            switch (fc){
-                    case 0:
-                    std::cout << "that's it";
-                    cstr3 = strtok_r(NULL, ";", &sp);
-                    if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
-                    else conn.push_back(std::make_pair(0, cstr3));
-                    break;
-
-                    case 1:
-                    std::cout << ";";
-                    cstr3 = strtok_r(NULL, ";", &sp);
-                    lilmor = 1;
-                     if (cstr3== NULL)conn.push_back(std::make_pair(0,e));
-                    else conn.push_back(std::make_pair(0, cstr3));
-                    break;
-
-                    case 2:
-                    std::cout << "&&";
-                    cstr3 = strtok_r(NULL, "&", &sp);
-                    lilmor=2;
-                     if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
-                    else conn.push_back(std::make_pair(2, cstr3));
-                    break;
-
-                    case 3:
-                    std::cout << "||";
-                    cstr3 = strtok_r(NULL, "|", &sp);
-                    lilmor=2;
-                     if (cstr3== NULL)conn.push_back(std::make_pair(0, e));
-                    else conn.push_back(std::make_pair(1, cstr3));
-                    break;
-
-                    default:
-                    std::cout << "UH OH!";
-            }
-
-        if (cstr3!= NULL)fc = findclosest(brokenfc + strlen(cstr3)+ lilmor);
-            else fc = 0;
-
-        }
-*/
-      //  std::cerr << "HLF: " << fc << "\n";
        for(int i = 0; i < conn.size(); i++){
 
                int a = -1;
