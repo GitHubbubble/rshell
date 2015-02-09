@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <cstring>
+#include <time.h>
 
 using namespace std;
 
@@ -26,9 +27,6 @@ void lstester(char a, char l, char R, vector<char*> dirs){
     cout << endl << endl;
 }
 
-void lprint(dirent * goods){
-
-}
 
 void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
@@ -79,7 +77,6 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                 }
 
                 //============================================
-                char * mover = new char[1024];
 
 
 
@@ -89,6 +86,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                             if(S_ISDIR(st.st_mode))
                             {
 
+                                    char * mover = new char[1024];
 
                                     nextup.push_back(strcpy(mover, fileref));
 
@@ -103,11 +101,113 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                     if (!l)
                         cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
                     else
-                        lprint(direntp);
+                    {
 
+                      //permissions
+
+                      cout << ((S_ISDIR(st.st_mode)) ? 'd' : '-');
+                      cout << (st.st_mode & S_IRUSR ? 'r' : '-');
+                      cout << (st.st_mode & S_IWUSR ? 'w' : '-');
+                      cout << (st.st_mode & S_IXUSR ? 'x' : '-');
+                      cout << (st.st_mode & S_IRGRP ? 'r' : '-');
+                      cout << (st.st_mode & S_IWGRP ? 'w' : '-');
+                      cout << (st.st_mode & S_IXGRP ? 'x' : '-');
+                      cout << (st.st_mode & S_IROTH ? 'r' : '-');
+                      cout << (st.st_mode & S_IWOTH ? 'w' : '-');
+                      cout << (st.st_mode & S_IXOTH ? 'x' : '-');
+
+                      cout << " ";
+
+                      //files within
+                      cout << "1" << " ";
+
+                      //Userid
+                      cout << st.st_uid << " ";
+                      //group id
+                      cout << st.st_gid << " ";
+                      //size in bytes
+                      cout << st.st_size << " ";
+
+                      //Month of last access
+                      time_t t = st.st_mtime;
+                      struct tm lt;
+                      localtime_r(&t, &lt);
+
+                      string ned;
+                      switch( lt.tm_mon + 1){
+
+                            case 1:
+                            ned = "Jan";
+                            break;
+
+                            case 2:
+                            ned = "Feb";
+                            break;
+
+                            case 3:
+                            ned = "Mar";
+                            break;
+
+                            case 4:
+                            ned = "Apr";
+                            break;
+
+                            case 5:
+                            ned = "May";
+                            break;
+
+                            case 6:
+                            ned = "Jun";
+                            break;
+
+                            case 7:
+                            ned = "Jul";
+                            break;
+
+                            case 8:
+                            ned = "Aug";
+                            break;
+
+                            case 9:
+                            ned = "Sep";
+                            break;
+
+                            case 10:
+                            ned = "Oct";
+                            break;
+
+                            case 11:
+                            ned = "Nov";
+                            break;
+
+                            case 12:
+                            ned = "Dec";
+                            break;
+
+                      }
+                      cout << ned << " ";
+
+                      //day of last access
+                      cout << lt.tm_mday << " ";
+                      //time of last access
+                      if(lt.tm_hour/10 ==0) cout << "0";
+                      cout << lt.tm_hour << ":";
+                      if(lt.tm_min/10 == 0) cout << "0";
+                      cout << lt.tm_min << " ";
+                      //
+
+
+                        cout << direntp->d_name <<  endl;  // use stat here to find attributes of file
+
+
+
+
+
+
+
+                    }
 
                 //============================================
-//                delete [] fileref;
             }
 
         }
@@ -121,6 +221,9 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
         if (R&&!nextup.empty()){
             cout << endl;
             lsrunner(a, l, R, nextup);
+
+            for(int j = 0; j < nextup.size(); j++)
+                delete [] nextup.at(j);
         }
 
     }
