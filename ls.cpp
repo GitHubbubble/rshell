@@ -24,7 +24,8 @@ void lstester(char a, char l, char R, vector<char*> dirs){
 }
 
 void lsrunner(char a, char l, char R, vector<char*> dirs ){
-    char *dirName = nam ;
+
+    char *dirName = dirs.at(0) ;
     DIR *dirp;
     if ((dirp = opendir(dirName))== NULL ){
         perror("Open dir");
@@ -77,7 +78,7 @@ int main(int argc, char *argv[])
         dirt.push_back((char*)".");
 
     lstester(fa, fl, fR, dirt);
-
+    lsrunner(fa, fl, fR, dirt);
 
 
 }
