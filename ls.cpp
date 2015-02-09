@@ -254,10 +254,12 @@ int main(int argc, char *argv[]){
 
     vector< char* > dirt;
 
-    for( int i = 1; i < (int)argc; i++){
 
-        if((u)argv[i][0] == '-'){
-            char j = 1;
+
+    for(unsigned int i = 1; i < (unsigned int)argc; i++){
+
+        if(argv[i][0] == '-'){
+            int j = 1;
 
             while(argv[i][j] != '\0'){
                 if (argv[i][j] == 'a')
@@ -267,7 +269,7 @@ int main(int argc, char *argv[]){
                 else if (argv[i][j] == 'R')
                     fR = 1;
                 else{
-                    cerr << "ls: \"" << argv[i][j] << "\" is not a recognized flag.\n";
+                    cerr << "ls: \"" <<(unsigned char)argv[i][j] << "\" is not a recognized flag.\n";
                     exit(1);
                 }
                 j++;
