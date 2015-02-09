@@ -44,6 +44,9 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
         }
 
+        if(R)
+            cout << dirName << endl;
+
         dirent *direntp;
         while ((direntp = readdir(dirp)))
         {
@@ -56,22 +59,22 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
             if(a || direntp->d_name[0] != '.' ){
 
                 //============================================
-              /*  struct stat st;
-                char * fileref = new char [1024];
+                struct stat st;
+                char  fileref[1024];
 
-                strcat(fileref, dirs.at(i));
-                strcat(fileref, "/");
-                strcat(fileref, direntp->d_name);
+                snprintf(fileref, sizeof(fileref), "%s/%s", dirName, direntp->d_name);
 
                 lstat(fileref, &st);
 
                 //============================================
                 if(S_ISDIR(st.st_mode))
                 {
+
+
                     //is an directory!
                 }
 
-                */
+
                 //============================================
                     if (!l)
                         cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
