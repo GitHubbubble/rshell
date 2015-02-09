@@ -21,9 +21,16 @@ void lstester(char a, char l, char R, vector<char*> dirs){
     for (int i = 0;i <  dirs.size(); i++)
         puts(dirs.at(i));
 
+    cout << endl << endl;
+}
+
+void lprint(dirent * goods){
+
 }
 
 void lsrunner(char a, char l, char R, vector<char*> dirs ){
+
+
 
     char *dirName = dirs.at(0) ;
     DIR *dirp;
@@ -40,7 +47,14 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
             perror("Read dir");
             exit(1);
         }
-        cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
+
+
+        if(a || direntp->d_name[0] != '.' ){
+            if (!l)
+                cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
+            else
+                lprint(direntp);
+        }
     }
     if (closedir(dirp) == -1){
         perror("Close dir");
