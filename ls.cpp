@@ -54,6 +54,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
 
             if(a || direntp->d_name[0] != '.' ){
+
                 //============================================
               /*  struct stat st;
                 char * fileref = new char [1024];
