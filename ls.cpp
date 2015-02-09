@@ -35,9 +35,16 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
     dirent *direntp;
     while ((direntp = readdir(dirp)))
-
+    {
+        if (errno != 0){
+            perror("Read dir");
+            exit(1);
+        }
         cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
-    closedir(dirp);
+    }
+    if (closedir(dirp) == -1){
+        perror("Close dir");
+    }
 
     cout << endl;
 }
