@@ -46,8 +46,6 @@ int fcall(char* argv[]){
 }
 
 char**  breakitup (std::string hamma){
-        char* sp2;
-
         char *cstr2 = new char [hamma.length() + 1];
         strcpy(cstr2, hamma.c_str());
 
@@ -55,21 +53,20 @@ char**  breakitup (std::string hamma){
         static char* argv[1024];
         argv[0] = (char*)"";
 
-        pch = strtok_r(cstr2, " ", &sp2);
+        pch = strtok(cstr2, " ");
 
         for( int p = 0; pch != NULL; p++){
             argv[p] = pch;
-            pch = strtok_r(NULL, " ", &sp2);
+            pch = strtok(NULL, " ");
         }
-
         return  argv;
 }
 
 int findclosest(std::string bobo ){
 
-    int cha = bobo.find(";");
-    int chb = bobo.find("&&");
-    int chc = bobo.find("||");
+    unsigned int cha = bobo.find(";");
+    unsigned int chb = bobo.find("&&");
+    unsigned int chc = bobo.find("||");
 
     bool pcha = (cha != std::string::npos);
     bool pchb = (chb != std::string::npos);
@@ -129,45 +126,55 @@ int main(){
         cstr2 = strtok(cstr, "#");
         std::string smoothly(cstr2);
 
-       ;
+        char mustpass = 0;
+        char didpass = 0;
 
-        std::vector<std::pair<char, std::string> conn;
+        std::vector<std::pair<char, std::string> > conn;
+
+        int temp = 0;
+        int fc = 0;
+
+        while (smoothly.size()!= 0){
 
         fc = findclosest(smoothly);
+            std::cerr << "%" << smoothly<< "\n";
+            switch (fc){
+                    case 0:
+                //    std::cout << "that's it";
+                        conn.push_back(std::make_pair(0,smoothly));
+                        smoothly.clear();
+                    break;
 
-        switch (fc){
-                case 0:
-            //    std::cout << "that's it";
-                    conn.push_back(std::makepair(0,smoothly));
-                break;
+                    case 1:
+              //      std::cout << ";";
+                      temp = smoothly.find(";");
+            std::cerr << "&" << smoothly.substr(0, temp) << "\n";
+                      conn.push_back(std::make_pair(0,smoothly.substr(0, temp)));
+                      smoothly = smoothly.substr(temp+1);
+                    break;
 
-                case 1:
-          //      std::cout << ";";
-                  int temp = cstr.find(";");
-                  conn.push_back(std::makepair(1,smoothly.substr(1, temp)));
-                  smoothly = smoothly.substr(1, temp+1 );
-                break;
+                    case 2:
+            //        std::cout << "&&";
+                      temp = smoothly.find("&&");
+            std::cerr << "&" << smoothly.substr(0, temp) << "\n";
+                      conn.push_back(std::make_pair(2,smoothly.substr(0, temp)));
+                      smoothly = smoothly.substr(temp+2 );
+                    break;
 
-                case 2:
-        //        std::cout << "&&";
-                    int temp = cstr.find(";");
-                  conn.push_back(std::makepair(2,smoothly.substr(1, temp)));
-                  smoothly = smoothly.substr(1, temp+2 );
-                break;
+                    case 3:
+                  //  std::cout << "||";
+                      temp = smoothly.find("||");
+            std::cerr << "&" << smoothly.substr(0, temp) << "\n";
+                      conn.push_back(std::make_pair(1,smoothly.substr(0, temp)));
+                      smoothly = smoothly.substr(temp+2 );
+                    break;
 
-                case 3:
-              //  std::cout << "||";
-                   int temp = cstr.find(";");
-                  conn.push_back(std::makepair(2,smoothly.substr(1, temp)));
-                  smoothly = smoothly.substr(1, temp+2 );
-                break;
-
-                default:
-                std::cout << "UH OH!";
+                    default:
+                    std::cout << "UH OH!";
+            }
         }
 
-
-       for(int i = 0; i < conn.size(); i++){
+       for(unsigned int i = 0; i < conn.size(); i++){
 
                int a = -1;
                char cancheck = 0;
@@ -183,8 +190,8 @@ int main(){
             }
             else
                 didpass = 0;
-            puts(conn.at(i).second);
-            std::cerr << (int)cancheck << "\n";
+            std::cerr << (int)cancheck << (conn.at(i).second) << "\n";
+
             if (cancheck){
                 a = fcall(breakitup(conn.at(i).second));
                  if (a < 0)
