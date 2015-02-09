@@ -23,7 +23,7 @@ void lstester(char a, char l, char R, vector<char*> dirs){
 
 }
 
-void lsrunner(char a, char l, char R, char* nam){
+void lsrunner(char a, char l, char R, vector<char*> dirs ){
     char *dirName = nam ;
     DIR *dirp;
     if ((dirp = opendir(dirName))== NULL ){
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
                 else if (argv[i][j] == 'R')
                     fR = 1;
                 else{
-                    cerr << "ls: flag warning : " << argv[i][j] << " not a recognized flag.";
+                    cerr << "ls: \"" << argv[i][j] << "\" is not a recognized flag.\n";
                     exit(1);
                 }
                 j++;
