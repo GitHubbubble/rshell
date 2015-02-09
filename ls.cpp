@@ -45,7 +45,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
         }
 
         if(R)
-            cout << dirName << endl;
+            cout << dirName << ":" << endl;
 
         dirent *direntp;
         while ((direntp = readdir(dirp)))
@@ -70,7 +70,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                 if(S_ISDIR(st.st_mode))
                 {
 
-
+                    nextup.push_back(fileref);
                     //is an directory!
                 }
 
@@ -94,7 +94,8 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
         cout << endl;
 
-        if (!nextup.empty())
+        if (R&&!nextup.empty())
+            cout << endl;
             lsrunner(a, l, R, nextup);
 
     }
