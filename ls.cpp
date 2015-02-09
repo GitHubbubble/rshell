@@ -44,7 +44,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
         }
 
-        if(R)
+   //     if(R)
             cout << dirName << ":" << endl;
 
         dirent *direntp;
@@ -64,14 +64,28 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
                 snprintf(fileref, sizeof(fileref), "%s/%s", dirName, direntp->d_name);
 
-                lstat(fileref, &st);
+
+                   lstat(fileref, &st);
+
+                if(-1 == stat(fileref, &st))
+                {
+                    perror("stat");
+                    exit(1);
+
+                }
 
                 //============================================
-                if(S_ISDIR(st.st_mode))
-                {
 
-                    nextup.push_back(fileref);
-                    //is an directory!
+
+                   if(direntp->d_name == "." && direntp->d_name == ".."){
+                    if(S_ISDIR(st.st_mode))
+                    {
+
+                            nextup.push_back(fileref);
+
+                            cout << fileref << " or " << direntp->d_name << " is a directory!" << endl;
+                    }
+                        //is an directory!
                 }
 
 
