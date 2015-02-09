@@ -1,8 +1,10 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <errno.h>
-
+#include <vector>
 #include <iostream>
+#include <stdio.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -11,16 +13,20 @@ using namespace std;
    * that there is no error checking on these functions.  You MUST add error
    * checking yourself.
  */
-void lstester(char a, char l, char R){
-    cout << (int)a << endl;
-    cout << (int)l << endl;
-    cout << (int)R << endl
+void lstester(char a, char l, char R, vector<char*> dirs){
+    cout <<"a " <<  (int)a << endl;
+    cout <<"l " <<  (int)l << endl;
+    cout <<"R " <<  (int)R << endl;
+
+    for (int i = 0;i <  dirs.size(); i++)
+        puts(dirs.at(i));
+
 }
 
 void lsrunner(char a, char l, char R, char* nam){
     char *dirName = nam ;
-    DIR *dirp
-    if ((dirp = opendir(dirNamei))== NULL ){
+    DIR *dirp;
+    if ((dirp = opendir(dirName))== NULL ){
         perror("Open dir");
         exit(1);
 
@@ -37,21 +43,41 @@ void lsrunner(char a, char l, char R, char* nam){
 
 int main(int argc, char *argv[])
 {
-    char fa;
-    char fl;
-    char fR;
+    char fa = 0;
+    char fl= 0;
+    char fR = 0;
 
+    vector< char* > dirt;
 
-    for(int i = 0; int i < (int)argc; i++){
+    for(int i = 1; i < (int)argc; i++){
 
-        char str[] =argv[i] ;
-        char * pch;
-        printf ("Splitting string \"%s\" into tokens:\n",str);
-        pch = strtok (str," ,.-");
-        while (pch != NULL){
-         printf ("%s\n",pch);
-        pch = strtok (NULL, " ,.-");
-          }
+        if(argv[i][0] == '-'){
+            char j = 1;
+
+            while(argv[i][j] != '\0'){
+                if (argv[i][j] == 'a')
+                    fa = 1;
+                else if (argv[i][j] == 'l')
+                    fl = 1;
+                else if (argv[i][j] == 'R')
+                    fR = 1;
+                else{
+                    cerr << "ls: flag warning : " << argv[i][j] << " not a recognized flag.";
+                    exit(1);
+                }
+                j++;
+            }
+        }
+        else{
+            dirt.push_back(argv[i]);
+        }
     }
+
+    if(dirt.empty())
+        dirt.push_back((char*)".");
+
+    lstester(fa, fl, fR, dirt);
+
+
 
 }
