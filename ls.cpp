@@ -8,7 +8,10 @@
 #include <cstdlib>
 #include <cstring>
 #include <time.h>
-
+#include <pwd.h>
+#include <grp.h>
+#include <iomanip>
+#include <ios>
 using namespace std;
 
 /*
@@ -21,7 +24,7 @@ void lstester(char a, char l, char R, vector<char*> dirs){
     cout <<"l " <<  (int)l << endl;
     cout <<"R " <<  (int)R << endl;
 
-    for (int i = 0;i <  dirs.size(); i++)
+    for (unsigned int i = 0;i <  dirs.size(); i++)
         puts(dirs.at(i));
 
     cout << endl << endl;
@@ -32,7 +35,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
     vector<char*> nextup;
 
-    for (int i = 0; i < dirs.size(); i++){  //prints out all directories quede
+    for (unsigned int i = 0; i < dirs.size(); i++){  //prints out all directories quede
 
 
         char *dirName = dirs.at(i) ;
@@ -44,8 +47,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
         }
 
         if(R || dirs.size() > 1){
-            if (i > 0)
-                cout << endl;
+            if (i > 0) cout << endl;
             cout << dirName << ":" << endl;
 
         }
@@ -67,7 +69,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                 snprintf(fileref, sizeof(fileref), "%s/%s", dirName, direntp->d_name);
 
 
-                   stat(fileref, &st);
+                stat(fileref, &st);
 
                 if(-1 == stat(fileref, &st))
                 {
@@ -81,133 +83,147 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
 
 
-                   if(R){
-                     if (strcmp(direntp -> d_name, ".")&& strcmp(direntp -> d_name, "..")){
-                            if(S_ISDIR(st.st_mode))
-                            {
+                if(R){
+                    if (strcmp(direntp -> d_name, ".")&& strcmp(direntp -> d_name, "..")){
+                        if(S_ISDIR(st.st_mode))
+                        {
 
-                                    char * mover = new char[1024];
+                            char * mover = new char[1024];
 
-                                    nextup.push_back(strcpy(mover, fileref));
+                            nextup.push_back(strcpy(mover, fileref));
 
- //                                   cout << fileref << " or " << direntp->d_name << " is a directory!" << endl;
-                            }
+                            //                                   cout << fileref << " or " << direntp->d_name << " is a directory!" << endl;
                         }
-                        //is an directory!
+                    }
+                //is an directory!
                 }
 
 
                 //============================================
-                    if (!l)
-                        cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
+                if (!l)
+                    cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
+                else
+                {
+
+                    //permissions
+
+                    cout << ((S_ISDIR(st.st_mode)) ? 'd' : '-');
+                    cout << (st.st_mode & S_IRUSR ? 'r' : '-');
+                    cout << (st.st_mode & S_IWUSR ? 'w' : '-');
+                    cout << (st.st_mode & S_IXUSR ? 'x' : '-');
+                    cout << (st.st_mode & S_IRGRP ? 'r' : '-');
+                    cout << (st.st_mode & S_IWGRP ? 'w' : '-');
+                    cout << (st.st_mode & S_IXGRP ? 'x' : '-');
+                    cout << (st.st_mode & S_IROTH ? 'r' : '-');
+                    cout << (st.st_mode & S_IWOTH ? 'w' : '-');
+                    cout << (st.st_mode & S_IXOTH ? 'x' : '-');
+
+                    cout << " ";
+
+                    //files within
+                    cout << setw(3);
+                    if (!(S_ISDIR(st.st_mode)))cout << "1" << " ";
                     else
                     {
-
-                      //permissions
-
-                      cout << ((S_ISDIR(st.st_mode)) ? 'd' : '-');
-                      cout << (st.st_mode & S_IRUSR ? 'r' : '-');
-                      cout << (st.st_mode & S_IWUSR ? 'w' : '-');
-                      cout << (st.st_mode & S_IXUSR ? 'x' : '-');
-                      cout << (st.st_mode & S_IRGRP ? 'r' : '-');
-                      cout << (st.st_mode & S_IWGRP ? 'w' : '-');
-                      cout << (st.st_mode & S_IXGRP ? 'x' : '-');
-                      cout << (st.st_mode & S_IROTH ? 'r' : '-');
-                      cout << (st.st_mode & S_IWOTH ? 'w' : '-');
-                      cout << (st.st_mode & S_IXOTH ? 'x' : '-');
-
-                      cout << " ";
-
-                      //files within
-                      cout << "1" << " ";
-
-                      //Userid
-                      cout << st.st_uid << " ";
-                      //group id
-                      cout << st.st_gid << " ";
-                      //size in bytes
-                      cout << st.st_size << " ";
-
-                      //Month of last access
-                      time_t t = st.st_mtime;
-                      struct tm lt;
-                      localtime_r(&t, &lt);
-
-                      string ned;
-                      switch( lt.tm_mon + 1){
-
-                            case 1:
-                            ned = "Jan";
-                            break;
-
-                            case 2:
-                            ned = "Feb";
-                            break;
-
-                            case 3:
-                            ned = "Mar";
-                            break;
-
-                            case 4:
-                            ned = "Apr";
-                            break;
-
-                            case 5:
-                            ned = "May";
-                            break;
-
-                            case 6:
-                            ned = "Jun";
-                            break;
-
-                            case 7:
-                            ned = "Jul";
-                            break;
-
-                            case 8:
-                            ned = "Aug";
-                            break;
-
-                            case 9:
-                            ned = "Sep";
-                            break;
-
-                            case 10:
-                            ned = "Oct";
-                            break;
-
-                            case 11:
-                            ned = "Nov";
-                            break;
-
-                            case 12:
-                            ned = "Dec";
-                            break;
-
-                      }
-                      cout << ned << " ";
-
-                      //day of last access
-                      cout << lt.tm_mday << " ";
-                      //time of last access
-                      if(lt.tm_hour/10 ==0) cout << "0";
-                      cout << lt.tm_hour << ":";
-                      if(lt.tm_min/10 == 0) cout << "0";
-                      cout << lt.tm_min << " ";
-                      //
+                        cout << st.st_nlink << dec << " ";
+                    }
+                    //Userid
+                    struct passwd *pw;
+                    if(!(pw = getpwuid(st.st_uid)))
+                        perror("getpuid");
 
 
-                        cout << direntp->d_name <<  endl;  // use stat here to find attributes of file
+                    cout << pw->pw_name << " ";
+                    //group id
+                    struct group *gp;
+                    if(!(gp = getgrgid(st.st_gid)))
+                        perror("getgrgid. ");
 
 
+                    cout << gp -> gr_name << " ";
+                    //size in bytes
+                    cout << setw(6);
+                    cout << st.st_size << " ";
 
+                    //Month of last access
+                    time_t t = st.st_mtime;
+                    struct tm lt;
+                    if (localtime_r(&t, &lt) == NULL)
+                        perror("ctime");
 
+                    string ned;
+                    switch( lt.tm_mon + 1){
 
+                        case 1:
+                        ned = "Jan";
+                        break;
 
+                        case 2:
+                        ned = "Feb";
+                        break;
+
+                        case 3:
+                        ned = "Mar";
+                        break;
+
+                        case 4:
+                        ned = "Apr";
+                        break;
+
+                        case 5:
+                        ned = "May";
+                        break;
+
+                        case 6:
+                        ned = "Jun";
+                        break;
+
+                        case 7:
+                        ned = "Jul";
+                        break;
+
+                        case 8:
+                        ned = "Aug";
+                        break;
+
+                        case 9:
+                        ned = "Sep";
+                        break;
+
+                        case 10:
+                        ned = "Oct";
+                        break;
+
+                        case 11:
+                        ned = "Nov";
+                        break;
+
+                        case 12:
+                        ned = "Dec";
+                        break;
 
                     }
+                    cout << ned << " ";
 
-                //============================================
+                    //day of last access
+                    cout << lt.tm_mday << " ";
+                    //time of last access
+                    if(lt.tm_hour/10 ==0) cout << "0";
+                        cout << lt.tm_hour << ":";
+                    if(lt.tm_min/10 == 0) cout << "0";
+                        cout << lt.tm_min << " ";
+                    //
+                    // if (S_ISDIR(st.st_mode)) printf("\x1b[34");
+                    //   if (direntp->d_name[0] == '.') printf("\x1b[47 ");
+                    //   if (S_IXUSR & st.st_mode) printf("\x1b[34");
+                    cout << direntp->d_name ;
+                    //  printf("\x1b[0m");
+                    cout << endl;
+                    // use stat here to find attributes of file
+
+                }
+
+            //============================================
             }
 
         }
@@ -220,9 +236,10 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
         if (R&&!nextup.empty()){
             cout << endl;
+
             lsrunner(a, l, R, nextup);
 
-            for(int j = 0; j < nextup.size(); j++)
+            for(unsigned int j = 0; j < nextup.size(); j++)
                 delete [] nextup.at(j);
         }
 
@@ -230,17 +247,16 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
     return;
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     char fa = 0;
     char fl= 0;
     char fR = 0;
 
     vector< char* > dirt;
 
-    for(int i = 1; i < (int)argc; i++){
+    for( int i = 1; i < (int)argc; i++){
 
-        if(argv[i][0] == '-'){
+        if((u)argv[i][0] == '-'){
             char j = 1;
 
             while(argv[i][j] != '\0'){
@@ -258,15 +274,15 @@ int main(int argc, char *argv[])
             }
         }
         else{
-            dirt.push_back(argv[i]);
+        dirt.push_back(argv[i]);
 
         }
     }
 
     if(dirt.empty())
-        dirt.push_back((char*)".");
+    dirt.push_back((char*)".");
 
-//    lstester(fa, fl, fR, dirt);
+    //    lstester(fa, fl, fR, dirt);
     lsrunner(fa, fl, fR, dirt);
 
 
