@@ -44,7 +44,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
         }
 
-   //     if(R)
+        if(R)
             cout << dirName << ":" << endl;
 
         dirent *direntp;
@@ -75,16 +75,22 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                 }
 
                 //============================================
+                char * mover = new char[1024];
 
 
-                   if(direntp->d_name == "." && direntp->d_name == ".."){
-                    if(S_ISDIR(st.st_mode))
-                    {
 
-                            nextup.push_back(fileref);
 
-                            cout << fileref << " or " << direntp->d_name << " is a directory!" << endl;
-                    }
+                   if(R){
+                     if (strcmp(direntp -> d_name, ".")&& strcmp(direntp -> d_name, ".."))
+                            if(S_ISDIR(st.st_mode))
+                            {
+
+
+                                    nextup.push_back(strcpy(mover, fileref));
+
+                                    cout << fileref << " or " << direntp->d_name << " is a directory!" << endl;
+                            }
+                        }
                         //is an directory!
                 }
 
@@ -95,6 +101,8 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                     else
                         lprint(direntp);
 
+                    if (!strcmp(direntp -> d_name, ".")||!strcmp(direntp -> d_name, ".."))
+                    cout << "!" << endl;
 
                 //============================================
 //                delete [] fileref;
@@ -108,10 +116,11 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
         cout << endl;
 
-        if (R&&!nextup.empty())
+        if (R&&!nextup.empty()){
             cout << endl;
+            lstester(a,l,R, nextup);
             lsrunner(a, l, R, nextup);
-
+        }
     }
 }
 
