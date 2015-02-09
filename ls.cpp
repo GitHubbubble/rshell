@@ -1,3 +1,4 @@
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <dirent.h>
 #include <errno.h>
@@ -5,6 +6,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
+#include <cstring>
 
 using namespace std;
 
@@ -30,37 +32,68 @@ void lprint(dirent * goods){
 
 void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
+    vector<char*> nextup;
 
+    for (int i = 0; i < dirs.size(); i++){  //prints out all directories qued
 
-    char *dirName = dirs.at(0) ;
-    DIR *dirp;
-    if ((dirp = opendir(dirName))== NULL ){
-        perror("Open dir");
-        exit(1);
-
-    }
-
-    dirent *direntp;
-    while ((direntp = readdir(dirp)))
-    {
-        if (errno != 0){
-            perror("Read dir");
+        char *dirName = dirs.at(0) ;
+        DIR *dirp;
+        if ((dirp = opendir(dirName))== NULL ){
+            perror("Open dir");
             exit(1);
+
         }
 
+        dirent *direntp;
+        while ((direntp = readdir(dirp)))
+        {
+            if (errno != 0){
+                perror("Read dir");
+                exit(1);
+            }
 
-        if(a || direntp->d_name[0] != '.' ){
-            if (!l)
-                cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
-            else
-                lprint(direntp);
+
+            if(a || direntp->d_name[0] != '.' ){
+                //============================================
+              /*  struct stat st;
+                char * fileref = new char [1024];
+
+                strcat(fileref, dirs.at(i));
+                strcat(fileref, "/");
+                strcat(fileref, direntp->d_name);
+
+                lstat(fileref, &st);
+
+                //============================================
+                if(S_ISDIR(st.st_mode))
+                {
+                    //is an directory!
+                }
+
+                */
+                //============================================
+                    if (!l)
+                        cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
+                    else
+                        lprint(direntp);
+
+
+                //============================================
+//                delete [] fileref;
+            }
+
         }
-    }
-    if (closedir(dirp) == -1){
-        perror("Close dir");
-    }
 
-    cout << endl;
+        if (closedir(dirp) == -1){
+            perror("Close dir");
+        }
+
+        cout << endl;
+
+        if (!nextup.empty())
+            lsrunner(a, l, R, nextup);
+
+    }
 }
 
 int main(int argc, char *argv[])
@@ -92,6 +125,7 @@ int main(int argc, char *argv[])
         }
         else{
             dirt.push_back(argv[i]);
+
         }
     }
 
