@@ -9,8 +9,18 @@
 #include <cstdlib>
 #include <vector>
 #include <utility>
+#include <sstream>
 
-int fcall(char* argv[]){
+int global;
+
+int fcall(std::vector<std::string> bargv){
+
+    char** argv = new char*[bargv.size()];
+
+    for(unsigned int bb = 0; bb < bargv.size(); bb++){
+        argv[bb] = (char*)bargv.at(bb).c_str();
+    }
+
     if (strlen(argv[0]) == 0){
 
         return -1;
@@ -42,37 +52,58 @@ int fcall(char* argv[]){
         if (-1 == wait(0))
             perror("wait");
     }
+
+    delete [] argv;
+
     return n;
 }
 
-char**  breakitup (std::string hamma){
-        char *cstr2 = new char [hamma.length() + 1];
-        strcpy(cstr2, hamma.c_str());
 
-        char*  pch;
-        static char* argv[1024];
-        argv[0] = (char*)"";
+int  breakitup (std::string hamma){
 
-        pch = strtok(cstr2, " ");
+    //===DEBUGGER PRINT==vv
+        std::cerr << "Cstring passed in: ";
+        std::cerr << hamma;
+    //===================^^
+    std::vector<std::string> bargv;
+    std::istringstream strm(hamma);
+    std::string s;
 
-        for( int p = 0; pch != NULL; p++){
-            argv[p] = pch;
-            pch = strtok(NULL, " ");
-        }
-        return  argv;
+    while (strm >> s)
+    {
+        bargv.push_back(s);
+    }
+    if (bargv.empty())
+        bargv.push_back("");
+
+
+    //===DEBUGGER PRINT==vv
+  /*  std::cerr <<"\nResulting tokens:\n";
+    for(unsigned int i = 0; i < bargv.size() ; i++){
+        std::cerr << "*";
+        puts(argv[i]);
+    }
+    std::cerr << "=======================\n\n";
+  */  //===================^^
+    global = bargv.size();
+
+    int holla = fcall(bargv);
+
+
+    return holla;
 }
 
 int findclosest(std::string bobo ){
+
+    bool pcha = ( bobo.find(";")!= std::string::npos);
+    bool pchb = ( bobo.find("&&")!= std::string::npos);
+    bool pchc = ( bobo.find("||")!= std::string::npos);
 
     unsigned int cha = bobo.find(";");
     unsigned int chb = bobo.find("&&");
     unsigned int chc = bobo.find("||");
 
-    bool pcha = (cha != std::string::npos);
-    bool pchb = (chb != std::string::npos);
-    bool pchc = (chc != std::string::npos);
-
-    if (!pcha && !pchb && !pchc){
+      if (!pcha && !pchb && !pchc){
         return 0;
     }
     else if (!pchb && !pchc){
@@ -93,14 +124,16 @@ int findclosest(std::string bobo ){
     else if (!pchb){
         if(cha < chc)
             return 1;
-        else
+        else{
             return 3;
+        }
     }
     else if (!pcha){
         if (chb < chc)
             return 2;
-        else
+        else {
             return 3;
+        }
     }
     else
     {
@@ -108,15 +141,19 @@ int findclosest(std::string bobo ){
             return 1;
         else if (chb < cha && chb < chc)
             return 2;
-        else
+        else {
             return 3;
+        }
     }
 
 
 }
 int main(){
+//welcome to the really awesome shell!
+
 
     while(1){
+        std::cout << "rash$ ";
         std::string chunky;
         std::getline(std::cin, chunky);
 
@@ -136,8 +173,8 @@ int main(){
 
         while (smoothly.size()!= 0){
 
-        fc = findclosest(smoothly);
-            std::cerr << "%" << smoothly<< "\n";
+            std::cerr << "\n===DEBUGGER PRINT===\n";
+            std::cerr << "%" << smoothly <<": " << fc << "\n";
             switch (fc){
                     case 0:
                 //    std::cout << "that's it";
@@ -148,7 +185,7 @@ int main(){
                     case 1:
               //      std::cout << ";";
                       temp = smoothly.find(";");
-            std::cerr << "&" << smoothly.substr(0, temp) << "\n";
+           // std::cerr << "&" << smoothly.substr(0, temp) << "\n";
                       conn.push_back(std::make_pair(0,smoothly.substr(0, temp)));
                       smoothly = smoothly.substr(temp+1);
                     break;
@@ -156,7 +193,7 @@ int main(){
                     case 2:
             //        std::cout << "&&";
                       temp = smoothly.find("&&");
-            std::cerr << "&" << smoothly.substr(0, temp) << "\n";
+          //  std::cerr << "&" << smoothly.substr(0, temp) << "\n";
                       conn.push_back(std::make_pair(2,smoothly.substr(0, temp)));
                       smoothly = smoothly.substr(temp+2 );
                     break;
@@ -164,7 +201,7 @@ int main(){
                     case 3:
                   //  std::cout << "||";
                       temp = smoothly.find("||");
-            std::cerr << "&" << smoothly.substr(0, temp) << "\n";
+          //  std::cerr << "&" << smoothly.substr(0, temp) << "\n";
                       conn.push_back(std::make_pair(1,smoothly.substr(0, temp)));
                       smoothly = smoothly.substr(temp+2 );
                     break;
@@ -178,7 +215,7 @@ int main(){
 
                int a = -1;
                char cancheck = 0;
-        std::cerr << (int)mustpass << (int)didpass << "\n";
+       // std::cerr << (int)mustpass << (int)didpass << "\n";
             if (mustpass == 2 && didpass == 1){
                 cancheck = 1;
             }
@@ -193,20 +230,22 @@ int main(){
             std::cerr << (int)cancheck << (conn.at(i).second) << "\n";
 
             if (cancheck){
-                a = fcall(breakitup(conn.at(i).second));
-                 if (a < 0)
-                    didpass = 0;
-                 else if (a == 0)
-                    didpass = 1;
-                else if (a > 0){
-                    delete[] cstr;
-                    goto skippy;
-                }
+                a = breakitup(conn.at(i).second);
+
+                //a = fcall(breakitup(conn.at(i).second));
+                if (a < 0)
+                   didpass = 0;
+                else if (a == 0)
+                   didpass = 1;
+               else if (a > 0){
+                   delete[] cstr;
+                   goto skippy;
+               }
             }
 
             mustpass = conn.at(i).first;
         }
-
+     delete [] cstr;
     }
     skippy:
     std::cout << "Ar revoir!\n";

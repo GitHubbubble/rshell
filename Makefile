@@ -1,13 +1,12 @@
-CFLAGS = -ansi -pedantic -Wall -Werror
+CFLAGS = -Wall -Werror -ansi -pedantic
 
-bin/all: bin/ls | bin
+all: rshell ls
 
-bin/rshell: rshell.cpp | bin
-	g++ -c $(CFLAGS) rshell.cpp
+rshell: rshell.cpp bin
+	g++ $(CFLAGS) rshell.cpp -o bin/rshell
 
-bin/ls: ls.cpp | bin
-	g++ -c $(CFLAGS) ls.cpp
+ls: ls.cpp bin
+	g++ $(CFLAGS) ls.cpp -o bin/ls
 
 bin:
 	mkdir bin
-
