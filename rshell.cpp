@@ -16,11 +16,22 @@ int global;
 int fcall(std::vector<std::string> bargv){
 
     char** argv = new char*[bargv.size()];
-
-    for(unsigned int bb = 0; bb < bargv.size(); bb++){
-        argv[bb] = (char*)bargv.at(bb).c_str();
+    unsigned int bb ;
+    for(bb = 0; bb < bargv.size(); bb++){
+        argv[bb] = strcat((char*)bargv.at(bb).c_str(), "\0");
+        std::cerr << (char*)bargv.at(bb).c_str() << "$$$\n";
     }
 
+
+    argv[bb] =NULL;
+
+    //debugg
+    int aa = 0;
+    while(argv[aa] != NULL){
+        puts(argv[aa]);
+        aa++;
+
+    }
     if (strlen(argv[0]) == 0){
 
         return -1;
@@ -83,8 +94,8 @@ int  breakitup (std::string hamma){
         std::cerr << "*";
         puts(argv[i]);
     }
-    std::cerr << "=======================\n\n";
-  */  //===================^^
+  */  std::cerr << "\n=======================\n\n";
+    //===================^^
     global = bargv.size();
 
     int holla = fcall(bargv);
