@@ -37,7 +37,9 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
     for (unsigned int i = 0; i < dirs.size(); i++){  //prints out all directories quede
 
-
+    if (!nextup.empty()){
+        cout << "where did he come from??: " << nextup.at(0);
+    }
         char *dirName = dirs.at(i) ;
         DIR *dirp;
         if ((dirp = opendir(dirName))== NULL ){
@@ -47,8 +49,8 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
         }
 
         if(R || dirs.size() > 1){
-            if (i > 0) cout << endl;
-            cout << dirName << ":" << endl;
+            if (i > 0) cout << endl << endl;
+            cout << dirName << ":"<< endl;
 
         }
         dirent *direntp;
@@ -89,7 +91,6 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                         {
 
                             char * mover = new char[1024];
-
                             nextup.push_back(strcpy(mover, fileref));
 
                             //                                   cout << fileref << " or " << direntp->d_name << " is a directory!" << endl;
@@ -142,7 +143,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
                     cout << gp -> gr_name << " ";
                     //size in bytes
-                    cout << setw(6);
+                    cout << setw(5);
                     cout << st.st_size << " ";
 
                     //Month of last access
@@ -206,6 +207,8 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                     cout << ned << " ";
 
                     //day of last access
+
+                    cout << setw(2);
                     cout << lt.tm_mday << " ";
                     //time of last access
                     if(lt.tm_hour/10 ==0) cout << "0";
@@ -232,15 +235,14 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
             perror("Close dir");
         }
 
-        cout << endl;
-
         if (R&&!nextup.empty()){
-            cout << endl;
-
+            cout << endl << endl;
             lsrunner(a, l, R, nextup);
 
-            for(unsigned int j = 0; j < nextup.size(); j++)
-                delete [] nextup.at(j);
+            for (unsigned int og; og < nextup.size(); og++){
+                delete [] nextup.at(og);
+            }
+            nextup.clear();
         }
 
     }
