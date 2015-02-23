@@ -11,14 +11,19 @@
 #include <utility>
 #include <sstream>
 #include <fcntl.h>
+#include <stdlib.h>
 
-void vectortest(std::vector<char**> wow1)
+void vectortest(std::vector < std::pair<char**, int*> > wow1)
 {
-    int m = 0;
-    while (wow1.at(0)[m] != NULL)
+    for (unsigned int gg = 0; gg < wow1.size(); gg++)
     {
-        puts(wow1.at(0)[m]);
-        m++;
+        int m = 0;
+        while (wow1.at(gg).first[m] != NULL)
+        {
+            std::cout << gg << "," << m << ": ";
+            puts(wow1.at(gg).first[m]);
+            m++;
+        }
     }
 }
 
@@ -80,30 +85,88 @@ int  breakitup (std::string hamma){
     if (bargv.empty())
         bargv.push_back("");
 
-    int dd = 1;
-    std::vector<std::pair<char**, int> > gammy;
+    int dd = 0;
+    std::vector<std::pair<char**, int*> > gammy;
 
+    char** argv;
 
-    for(bb = 0; bb < bargv.size(); bb++){
+    for(unsigned int bb = 0; bb < bargv.size(); bb++){
 
-    char* argv [1024];
-    unsigned int bb;
+        argv = (char **) malloc (1024);
+        while(bb < bargv.size() && bargv.at(bb).compare(">") && bargv.at(bb).compare("<")&& bargv.at(bb).compare(">>")&& bargv.at(bb).compare("|") )
+        {    //if strcat((char*)bargv.at(bb).c_str(), "\0") == <
+            argv[dd] = strcat((char*)bargv.at(bb).c_str(), "\0");
+            bb++;
+            dd++;
+        }
+        argv[dd] =NULL;
 
+        bool caset = 1;
+        if (bb >= bargv.size())
+        {
+            goto guddy;
+        }
+        else if (bb +1 >= bargv.size())
+        {
+            goto buddy;
+        }
 
-        //if strcat((char*)bargv.at(bb).c_str(), "\0") == <
-        //
+        if (bargv.at(bb).compare("<")){
+            int op[2] = {1, 1};
+            gammy.push_back(std::make_pair(argv, op ));
+        }
+        else if (bargv.at(bb).compare(">")){
 
-        argv[bb] = strcat((char*)bargv.at(bb).c_str(), "\0");
-    }
+            int op[2] = {1, 1};
+            gammy.push_back(std::make_pair(argv, op));
+        }
+        else if (bargv.at(bb).compare(">>")){
 
-    argv[bb] =NULL;
+            int op[2] = {1, 1};
+            gammy.push_back(std::make_pair(argv, op));
+        }
+        else if (bargv.at(bb).compare("|")){
+
+            int op[2] = {1, 1};
+            gammy.push_back(std::make_pair(argv, op));
+        }
+        else{
+            guddy:
+            int op[2] = {1, 1};
+            gammy.push_back(std::make_pair(argv, op));
+            caset = 0;
+        }
+
+        dd =0;
+        if (caset){
+            if((bb + 1) >= bargv.size()){
+                buddy:
+                std::cerr << "Miss-matched i/o dierection!\n";
+                return -1;
+            }
+        }
+        bb++;
+
+        if (bb < bargv.size() && bargv.at(bb).compare("|")){
+            int op[2] = {1, 1};
+            gammy.push_back(std::make_pair(argv, op));
+            bb++;
+        }
+
+        if (caset){
+            if((bb + 1) >= bargv.size()){
+                std::cerr << "Miss-matched i/o dierection!\n";
+                return -1;
+            }
+        }
     }
 
     vectortest(gammy);
    // int holla = fcall(argv);
 
    // return holla;
-   return 0;
+   free (argv);
+   return 1;
 }
 
 int findclosest(std::string bobo ){
