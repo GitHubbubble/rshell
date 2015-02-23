@@ -111,28 +111,37 @@ int  breakitup (std::string hamma){
             goto buddy;
         }
 
+        int fd;
+
         if (bargv.at(bb).compare("<")){
-            int op[2] = {1, 1};
+            if (-1 == (fd = open(argv[dd + 1], O_RDONLY))){
+                perror("open");
+            }
+            int op[2] = {1, fd};
             gammy.push_back(std::make_pair(argv, op ));
         }
         else if (bargv.at(bb).compare(">")){
-
-            int op[2] = {1, 1};
+            if (-1 == (fd = open(argv[dd + 1], (O_RDWR) | O_CREAT, S_IRWXU))){
+                perror("open");
+            }
+            int op[2] = {2, fd};
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare(">>")){
-
-            int op[2] = {1, 1};
+            if (-1 == (fd = open(argv[dd + 1], (O_RDWR | O_APPEND) | O_CREAT, S_IRWXU))){
+                perror("open");
+            }
+            int op[2] = {3, fd};
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare("|")){
 
-            int op[2] = {1, 1};
+            int op[2] = {4, 1};
             gammy.push_back(std::make_pair(argv, op));
         }
         else{
             guddy:
-            int op[2] = {1, 1};
+            int op[2] = {0, 1};
             gammy.push_back(std::make_pair(argv, op));
             caset = 0;
         }
@@ -148,7 +157,7 @@ int  breakitup (std::string hamma){
         bb++;
 
         if (bb < bargv.size() && bargv.at(bb).compare("|")){
-            int op[2] = {1, 1};
+            int op[2] = {4, 1};
             gammy.push_back(std::make_pair(argv, op));
             bb++;
         }
