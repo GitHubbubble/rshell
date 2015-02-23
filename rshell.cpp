@@ -10,28 +10,24 @@
 #include <vector>
 #include <utility>
 #include <sstream>
+#include <fcntl.h>
 
-int global;
-
-int fcall(std::vector<std::string> bargv){
-
-    char** argv = new char*[bargv.size()];
-    unsigned int bb ;
-    for(bb = 0; bb < bargv.size(); bb++){
-        argv[bb] = strcat((char*)bargv.at(bb).c_str(), "\0");
-        std::cerr << (char*)bargv.at(bb).c_str() << "$$$\n";
+void vectortest(std::vector<char**> wow1)
+{
+    int m = 0;
+    while (wow1.at(0)[m] != NULL)
+    {
+        puts(wow1.at(0)[m]);
+        m++;
     }
+}
 
+int fcall(char** argv){
 
-    argv[bb] =NULL;
+    const int pipew = 0;
+    const int piper = 0;
+    //gotta say, fully understanding pipe I really appriciate how much sense this saves me.
 
-    //debugg
-    int aa = 0;
-    while(argv[aa] != NULL){
-        puts(argv[aa]);
-        aa++;
-
-    }
     if (strlen(argv[0]) == 0){
 
         return -1;
@@ -40,6 +36,7 @@ int fcall(std::vector<std::string> bargv){
 
         return 1;
     }
+
     int n = 0;
     int pid = fork();
     if(pid == -1)//fork’s return value for an error is -1
@@ -63,8 +60,8 @@ int fcall(std::vector<std::string> bargv){
         if (-1 == wait(0))
             perror("wait");
     }
-
-    delete [] argv;
+    pid = pipew + piper;
+   // delete [] argv;
 
     return n;
 }
@@ -72,10 +69,6 @@ int fcall(std::vector<std::string> bargv){
 
 int  breakitup (std::string hamma){
 
-    //===DEBUGGER PRINT==vv
-        std::cerr << "Cstring passed in: ";
-        std::cerr << hamma;
-    //===================^^
     std::vector<std::string> bargv;
     std::istringstream strm(hamma);
     std::string s;
@@ -87,21 +80,30 @@ int  breakitup (std::string hamma){
     if (bargv.empty())
         bargv.push_back("");
 
+    int dd = 1;
+    std::vector<std::pair<char**, int> > gammy;
 
-    //===DEBUGGER PRINT==vv
-  /*  std::cerr <<"\nResulting tokens:\n";
-    for(unsigned int i = 0; i < bargv.size() ; i++){
-        std::cerr << "*";
-        puts(argv[i]);
+
+    for(bb = 0; bb < bargv.size(); bb++){
+
+    char* argv [1024];
+    unsigned int bb;
+
+
+        //if strcat((char*)bargv.at(bb).c_str(), "\0") == <
+        //
+
+        argv[bb] = strcat((char*)bargv.at(bb).c_str(), "\0");
     }
-  */  std::cerr << "\n=======================\n\n";
-    //===================^^
-    global = bargv.size();
 
-    int holla = fcall(bargv);
+    argv[bb] =NULL;
+    }
 
+    vectortest(gammy);
+   // int holla = fcall(argv);
 
-    return holla;
+   // return holla;
+   return 0;
 }
 
 int findclosest(std::string bobo ){
@@ -184,8 +186,6 @@ int main(){
 
         while (smoothly.size()!= 0){
 
-            std::cerr << "\n===DEBUGGER PRINT===\n";
-            std::cerr << "%" << smoothly <<": " << fc << "\n";
             switch (fc){
                     case 0:
                 //    std::cout << "that's it";
@@ -226,7 +226,6 @@ int main(){
 
                int a = -1;
                char cancheck = 0;
-       // std::cerr << (int)mustpass << (int)didpass << "\n";
             if (mustpass == 2 && didpass == 1){
                 cancheck = 1;
             }
@@ -238,7 +237,6 @@ int main(){
             }
             else
                 didpass = 0;
-            std::cerr << (int)cancheck << (conn.at(i).second) << "\n";
 
             if (cancheck){
                 a = breakitup(conn.at(i).second);
