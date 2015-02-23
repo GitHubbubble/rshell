@@ -27,27 +27,22 @@ void vectortest(std::vector < std::pair<char**, std:: vector<std::string> > > wo
     }
 }
 
-int fcall(std::vector < std::pair<char**, int*> > argvv ){
+int fcall(std::vector < std::pair<char**, std::string> > argvv ){
 
 //    const int pipew = 2;
 //    const int piper = 1;
     //gotta say, fully understanding pipe I really appriciate how much sense this saves me.
-/*
-    if (strlen(argv[0]) == 0){
+
+    if (strlen(argvv.at(0).first[0]) == 0){
 
         return -1;
     }
-    if (!strcmp(argv[0], "exit")){
+    if (!strcmp(argvv.at(0).first[0], "exit")){
 
         return 1;
     }
-*/
-    int n = 0;
 
-
-
-
-
+    int n = (int)argvv.at(0).second.at(0);
 
 
 
