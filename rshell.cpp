@@ -13,26 +13,26 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-void vectortest(std::vector < std::pair<char**, int*> > wow1)
+void vectortest(std::vector < std::pair<char**, std:: vector<std::string> > > wow1)
 {
     for (unsigned int gg = 0; gg < wow1.size(); gg++)
     {
         int m = 0;
         while (wow1.at(gg).first[m] != NULL)
         {
-            std::cout << gg << "," << m << ": " << wow1.at(gg).second[1];
+            std::cout << gg << "," << m << ": " << wow1.at(gg).second[0];
             puts(wow1.at(gg).first[m]);
             m++;
         }
     }
 }
 
-int fcall(char** argv){
+int fcall(std::vector < std::pair<char**, int*> > argvv ){
 
-    const int pipew = 2;
-    const int piper = 1;
+//    const int pipew = 2;
+//    const int piper = 1;
     //gotta say, fully understanding pipe I really appriciate how much sense this saves me.
-
+/*
     if (strlen(argv[0]) == 0){
 
         return -1;
@@ -41,31 +41,111 @@ int fcall(char** argv){
 
         return 1;
     }
-
+*/
     int n = 0;
-    int pid = fork();
-    if(pid == -1)//fork’s return value for an error is -1
-    {
-       //perror("There was an error with fork(). ");
-       perror("fork"); //although you certainly can use the above, it is good
-                       //practice not to write more information than necessary
-       exit(1);//there was an error with fork so exit the program and go back and fix it
-    }
-    else if(pid == 0)//when pid is 0 you are in the child process
-    {
 
-       if (0 < execvp(argv[0], argv)){
-           n = -1;
-           perror("execvp");
-       }
-       exit(1);  //when the child process finishes doing what we want it to, cout,
-                 //we want to kill the child process so it doesn’t go on in the program so we exit
+
+
+
+
+
+
+
+/*
+
+    for (unsigned int i = 0; i < argvv.size(); i++ ){
+
+
+
+        int pid = fork();
+        if(pid == -1)//fork’s return value for an error is -1
+        {
+           //perror("There was an error with fork(). ");
+           perror("fork"); //although you certainly can use the above, it is good
+                           //practice not to write more information than necessary
+           exit(1);//there was an error with fork so exit the program and go back and fix it
+        }
+        else if(pid == 0)//when pid is 0 you are in the child process
+        {
+
+            int y = 0;
+            if (i != 0){
+                y  = argvv.at(i - 1).second[0];
+
+                switch (x){
+                    case 0:
+
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+
+                    case 4:
+
+                    case 5:
+                }
+            }
+
+            int x = argvv.at(i).second[0];
+            switch (x){
+                case 0:
+
+                case 1:
+
+                case 2:
+
+                case 3:
+
+                case 4:
+
+                case 5:
+
+           }
+
+
+
+
+
+
+
+
+
+           if (0 < execvp(argv[0], argv)){
+               n = -1;
+               perror("execvp");
+           }
+           exit(1);  //when the child process finishes doing what we want it to, cout,
+                     //we want to kill the child process so it doesn’t go on in the program so we exit
+        }
+        else if(pid > 0){//if pid is not 0 then we’re in the parent
+            if (-1 == wait(0))
+                perror("wait");
+        }
+
     }
-    else if(pid > 0){//if pid is not 0 then we’re in the parent
-        if (-1 == wait(0))
-            perror("wait");
-    }
-    pid = pipew + piper;
+*/
+/*
+if (-1 == (fd = open(argv[dd + 1], O_RDONLY))){
+                perror("open");
+            }
+
+if (-1 == (fd = open(argv[dd + 1], (O_RDWR) | O_CREAT, S_IRWXU))){
+                perror("open");
+            }
+
+if (-1 == (fd = open(argv[dd + 1], (O_RDWR | O_APPEND) | O_CREAT, S_IRWXU))){
+                perror("open");
+            }
+
+
+
+*/
+
+
+
+
+
    // delete [] argv;
 
     return n;
@@ -86,10 +166,9 @@ int  breakitup (std::string hamma){
         bargv.push_back("");
 
     int dd = 0;
-    std::vector<std::pair<char**, int*> > gammy;
+    std::vector<std::pair<char**, std::vector<std::string> > > gammy;
 
     char** argv;
-    int * op;
 
     for(unsigned int bb = 0; bb < bargv.size(); bb++){
 
@@ -102,7 +181,8 @@ int  breakitup (std::string hamma){
         }
         argv[dd] =NULL;
 
-        op = (int*) malloc(3);
+        std::vector<std::string > op;
+
         bool caset = 1;
         if (bb >= bargv.size())
         {
@@ -113,50 +193,28 @@ int  breakitup (std::string hamma){
             goto buddy;
         }
 
-        int fd;
-
-
-
         if (bargv.at(bb).compare("<")){
-            if (-1 == (fd = open(argv[dd + 1], O_RDONLY))){
-                perror("open");
-            }
-            op[0] = 1;
-            op[1] = fd;
+            op.push_back ( "1");
+            op.push_back(bargv.at(bb +1));
             gammy.push_back(std::make_pair(argv, op ));
         }
         else if (bargv.at(bb).compare(">")){
-            if (-1 == (fd = open(argv[dd + 1], (O_RDWR) | O_CREAT, S_IRWXU))){
-                perror("open");
-            }
-            op[0] = 2;
-            op[1] = fd;
+            op.push_back ( "2");
+            op.push_back(bargv.at(bb +1));
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare(">>")){
-            if (-1 == (fd = open(argv[dd + 1], (O_RDWR | O_APPEND) | O_CREAT, S_IRWXU))){
-                perror("open");
-            }
-            op[0] = 3;
-            op[1] = fd;
-
+            op.push_back ( "3");
+            op.push_back(bargv.at(bb +1));
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare("|")){
-            int fds[2];
-
-            if(pipe(fds) == -1){
-                perror("pipe");
-            }
-            op[0] = 4;
-            op[1] = fds[0];
-            op[2] = fds[1];
-
+            op.push_back ( "4");
             gammy.push_back(std::make_pair(argv, op));
         }
         else{
             guddy:
-            op[0] = 0;
+            op.push_back( "0");
             gammy.push_back(std::make_pair(argv, op));
             caset = 0;
         }
@@ -172,17 +230,7 @@ int  breakitup (std::string hamma){
         bb++;
 
         if (bb < bargv.size() && bargv.at(bb).compare("|")){
-
-            op = (int*) malloc(3);
-           int fds[2];
-
-            if(pipe(fds) == -1){
-                perror("pipe");
-            }
-            op[0] = 4;
-            op[1] = fds[0];
-            op[2] = fds[1];
-
+            op.at(0) = "5";
             gammy.push_back(std::make_pair(argv, op));
             bb++;
         }
