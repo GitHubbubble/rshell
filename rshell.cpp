@@ -29,8 +29,8 @@ void vectortest(std::vector < std::pair<char**, int*> > wow1)
 
 int fcall(char** argv){
 
-    const int pipew = 0;
-    const int piper = 0;
+    const int pipew = 2;
+    const int piper = 1;
     //gotta say, fully understanding pipe I really appriciate how much sense this saves me.
 
     if (strlen(argv[0]) == 0){
@@ -89,6 +89,7 @@ int  breakitup (std::string hamma){
     std::vector<std::pair<char**, int*> > gammy;
 
     char** argv;
+    int* op;
 
     for(unsigned int bb = 0; bb < bargv.size(); bb++){
 
@@ -111,37 +112,44 @@ int  breakitup (std::string hamma){
             goto buddy;
         }
 
-        int fd;
+        op = (int *) malloc (3);
 
         if (bargv.at(bb).compare("<")){
             if (-1 == (fd = open(argv[dd + 1], O_RDONLY))){
                 perror("open");
             }
-            int op[2] = {1, fd};
+            op[0] = 1;
+            op[2] = fd;
             gammy.push_back(std::make_pair(argv, op ));
         }
         else if (bargv.at(bb).compare(">")){
             if (-1 == (fd = open(argv[dd + 1], (O_RDWR) | O_CREAT, S_IRWXU))){
                 perror("open");
             }
-            int op[2] = {2, fd};
+            op[0] = 2;
+            op[2] = fd;
+
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare(">>")){
             if (-1 == (fd = open(argv[dd + 1], (O_RDWR | O_APPEND) | O_CREAT, S_IRWXU))){
                 perror("open");
             }
-            int op[2] = {3, fd};
+            op[0] = 3;
+            op[2] = fd;
+
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare("|")){
+            int fds
+            op[0] = 4;
+            op[2] = fd;
 
-            int op[2] = {4, 1};
             gammy.push_back(std::make_pair(argv, op));
         }
         else{
             guddy:
-            int op[2] = {0, 1};
+
             gammy.push_back(std::make_pair(argv, op));
             caset = 0;
         }
@@ -157,7 +165,8 @@ int  breakitup (std::string hamma){
         bb++;
 
         if (bb < bargv.size() && bargv.at(bb).compare("|")){
-            int op[2] = {4, 1};
+            op[0] = 4;
+            op[2] = fd;
             gammy.push_back(std::make_pair(argv, op));
             bb++;
         }
