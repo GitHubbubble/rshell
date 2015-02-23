@@ -20,7 +20,7 @@ void vectortest(std::vector < std::pair<char**, int*> > wow1)
         int m = 0;
         while (wow1.at(gg).first[m] != NULL)
         {
-            std::cout << gg << "," << m << ": ";
+            std::cout << gg << "," << m << ": " << wow1.at(gg).second[1];
             puts(wow1.at(gg).first[m]);
             m++;
         }
@@ -89,7 +89,7 @@ int  breakitup (std::string hamma){
     std::vector<std::pair<char**, int*> > gammy;
 
     char** argv;
-    int* op;
+    int * op;
 
     for(unsigned int bb = 0; bb < bargv.size(); bb++){
 
@@ -102,6 +102,7 @@ int  breakitup (std::string hamma){
         }
         argv[dd] =NULL;
 
+        op = (int*) malloc(3);
         bool caset = 1;
         if (bb >= bargv.size())
         {
@@ -112,14 +113,16 @@ int  breakitup (std::string hamma){
             goto buddy;
         }
 
-        op = (int *) malloc (3);
+        int fd;
+
+
 
         if (bargv.at(bb).compare("<")){
             if (-1 == (fd = open(argv[dd + 1], O_RDONLY))){
                 perror("open");
             }
             op[0] = 1;
-            op[2] = fd;
+            op[1] = fd;
             gammy.push_back(std::make_pair(argv, op ));
         }
         else if (bargv.at(bb).compare(">")){
@@ -127,8 +130,7 @@ int  breakitup (std::string hamma){
                 perror("open");
             }
             op[0] = 2;
-            op[2] = fd;
-
+            op[1] = fd;
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare(">>")){
@@ -136,20 +138,25 @@ int  breakitup (std::string hamma){
                 perror("open");
             }
             op[0] = 3;
-            op[2] = fd;
+            op[1] = fd;
 
             gammy.push_back(std::make_pair(argv, op));
         }
         else if (bargv.at(bb).compare("|")){
-            int fds
+            int fds[2];
+
+            if(pipe(fds) == -1){
+                perror("pipe");
+            }
             op[0] = 4;
-            op[2] = fd;
+            op[1] = fds[0];
+            op[2] = fds[1];
 
             gammy.push_back(std::make_pair(argv, op));
         }
         else{
             guddy:
-
+            op[0] = 0;
             gammy.push_back(std::make_pair(argv, op));
             caset = 0;
         }
@@ -165,8 +172,17 @@ int  breakitup (std::string hamma){
         bb++;
 
         if (bb < bargv.size() && bargv.at(bb).compare("|")){
+
+            op = (int*) malloc(3);
+           int fds[2];
+
+            if(pipe(fds) == -1){
+                perror("pipe");
+            }
             op[0] = 4;
-            op[2] = fd;
+            op[1] = fds[0];
+            op[2] = fds[1];
+
             gammy.push_back(std::make_pair(argv, op));
             bb++;
         }
@@ -184,6 +200,7 @@ int  breakitup (std::string hamma){
 
    // return holla;
    free (argv);
+
    return 1;
 }
 
