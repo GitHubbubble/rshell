@@ -27,10 +27,14 @@ void vectortest(std::vector < std::pair<char**, std:: vector<std::string> > > wo
     }
 }
 
-int fcall(std::vector < std::pair<char**, std::string> > argvv ){
 
-//    const int pipew = 2;
-//    const int piper = 1;
+
+
+
+int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
+
+    const int pipew = 1;
+    const int piper = 0;
     //gotta say, fully understanding pipe I really appriciate how much sense this saves me.
 
     if (strlen(argvv.at(0).first[0]) == 0){
@@ -42,15 +46,34 @@ int fcall(std::vector < std::pair<char**, std::string> > argvv ){
         return 1;
     }
 
-    int n = (int)argvv.at(0).second.at(0);
+    int n = 0;
 
+    std::vector<int*> fdv;
 
+    for (unsigned int k = 0; k < argvv.size(); k++){
+        if (!argvv.at(k).second.at(0).compare("4") ){
+            int fd[2];
+            if(pipe(fd) == -1)
+                perror("pipe");
+            fdv.push_back(fd);
+        }
+        else
+        {
+            fdv.push_back(NULL);
+        }
+    }
 
-/*
+    unsigned int waitcount = 0;
+
+    int stdins;
+    int stdouts;
+
+    if (-1 == (stdins = dup(0)))
+        perror("dup");
+    if (-1 == (stdouts = dup(1)))
+        perror("dup");
 
     for (unsigned int i = 0; i < argvv.size(); i++ ){
-
-
 
         int pid = fork();
         if(pid == -1)//fork’s return value for an error is -1
@@ -60,88 +83,117 @@ int fcall(std::vector < std::pair<char**, std::string> > argvv ){
                            //practice not to write more information than necessary
            exit(1);//there was an error with fork so exit the program and go back and fix it
         }
+
         else if(pid == 0)//when pid is 0 you are in the child process
         {
+            int fdx;
+            int fdy;
 
-            int y = 0;
-            if (i != 0){
-                y  = argvv.at(i - 1).second[0];
+            //(I) ==============
+            int y = ((int)argvv.at(i).second.at(0).at(0)-48);
 
-                switch (x){
+
+            switch (y){
+                case 0:
+                break;
+
+                case 1:
+                    if (-1 == (fdy = open(argvv.at(i).second.at(1).c_str(), O_RDONLY))){
+                        perror("open");
+                    }
+                    if (-1 == dup2(fdy, 0)){
+                        perror("dup");
+                    }
+                break;
+
+                case 2:
+                break;
+
+                case 3:
+                break;
+
+                case 4:
+                if(-1 == dup2(fdv.at(i)[piper],0 ))
+                    perror("dup");
+                break;
+
+                }
+
+            //(I +1) ==============
+            if (i+1 < argvv.size()){
+               int z = ((int)argvv.at(i+1).second.at(0).at(0)-48);
+
+                switch (z){
                     case 0:
+                    break;
 
                     case 1:
+                    break;
 
                     case 2:
+                    if (-1 == (fdx = open(argvv.at(i+1).second.at(1).c_str(), O_RDWR | O_CREAT,S_IRWXU ))){
+                        perror("open");
+                    }
+                    if (-1 ==  dup2(fdx,1 ))
+                        perror("dup");
+                    break;
 
                     case 3:
+                    if (-1 == (fdx = open(argvv.at(i+1).second.at(1).c_str(), (O_RDWR | O_APPEND) | O_CREAT,S_IRWXU ))){
+                        perror("open");
+                    }
+                    if (-1 ==  dup2(fdx,1 ))
+                        perror("dup");
+                    break;
 
                     case 4:
+                        if(-1 == dup2(fdv.at(i+1)[pipew],1 ))
+                            perror("dup");
+                    break;
+                 }
+            }
 
-                    case 5:
+            for(unsigned int kg; kg < fdv.size(); kg++){
+                if (fdv.at(kg) != NULL){
+                    if (-1 == close(fdv.at(kg)[0]))
+                        perror("close");
+                    if (-1 == close(fdv.at(kg)[1]))
+                        perror("close");
                 }
             }
 
-            int x = argvv.at(i).second[0];
-            switch (x){
-                case 0:
+            if (y != 2 && y!= 3){
+                if (0 < execvp(argvv.at(i).first[0],argvv.at(i).first )){
+                    n = -1;
+                    perror("execvp");
+                }
+                else
+                    waitcount++;
+            }
 
-                case 1:
+            exit(1);  //when the child process finishes doing what we want it to, cout,
+                      //we want to kill the child process so it doesn’t go on in the program so we exit
 
-                case 2:
-
-                case 3:
-
-                case 4:
-
-                case 5:
-
-           }
-
-
-
-
-
-
-
-
-
-           if (0 < execvp(argv[0], argv)){
-               n = -1;
-               perror("execvp");
-           }
-           exit(1);  //when the child process finishes doing what we want it to, cout,
-                     //we want to kill the child process so it doesn’t go on in the program so we exit
-        }
-        else if(pid > 0){//if pid is not 0 then we’re in the parent
-            if (-1 == wait(0))
-                perror("wait");
         }
 
     }
-*/
-/*
-if (-1 == (fd = open(argv[dd + 1], O_RDONLY))){
-                perror("open");
-            }
 
-if (-1 == (fd = open(argv[dd + 1], (O_RDWR) | O_CREAT, S_IRWXU))){
-                perror("open");
-            }
+    for (unsigned int f = 0; f < waitcount; f++){
+        if (-1 == wait(0))
+        perror("wait");
+    }
 
-if (-1 == (fd = open(argv[dd + 1], (O_RDWR | O_APPEND) | O_CREAT, S_IRWXU))){
-                perror("open");
-            }
+    if (-1 == dup2(stdins, 0))
+        perror("dup");
+    if (-1 == dup2(stdouts, 1))
+        perror("dup");
 
 
+    if (-1 == close(stdins))
+        perror("close");
+    if (-1 == close(stdouts))
+        perror("close");
 
-*/
-
-
-
-
-
-   // delete [] argv;
 
     return n;
 }
@@ -160,13 +212,31 @@ int  breakitup (std::string hamma){
     if (bargv.empty())
         bargv.push_back("");
 
-    int dd = 0;
+    int dd = 0; //not one of my better names
     std::vector<std::pair<char**, std::vector<std::string> > > gammy;
-
     char** argv;
 
     for(unsigned int bb = 0; bb < bargv.size(); bb++){
-
+        std::vector<std::string > op;
+        if (!bargv.at(bb).compare(">")){
+            op.push_back ( "2");
+            op.push_back(bargv.at(bb +1));
+            gammy.push_back(std::make_pair(argv, op));
+            bb += 2;
+        }
+        else if (!bargv.at(bb).compare(">>")){
+            op.push_back ( "3");
+            op.push_back(bargv.at(bb +1));
+            gammy.push_back(std::make_pair(argv, op));
+            bb += 2;
+        }
+        else if (!bargv.at(bb).compare("|")){
+            op.push_back ( "4");
+            bb++;
+        }
+        else{
+            op.push_back("0");
+        }
         argv = (char **) malloc (1024);
         while(bb < bargv.size() && bargv.at(bb).compare(">") && bargv.at(bb).compare("<")&& bargv.at(bb).compare(">>")&& bargv.at(bb).compare("|") )
         {    //if strcat((char*)bargv.at(bb).c_str(), "\0") == <
@@ -176,75 +246,45 @@ int  breakitup (std::string hamma){
         }
         argv[dd] =NULL;
 
-        std::vector<std::string > op;
-
-        bool caset = 1;
-        if (bb >= bargv.size())
-        {
-            goto guddy;
-        }
-        else if (bb +1 >= bargv.size())
-        {
-            goto buddy;
-        }
-
-        if (bargv.at(bb).compare("<")){
+        if (bb < bargv.size() &&  !bargv.at(bb).compare("<")){
+            op.pop_back();
             op.push_back ( "1");
             op.push_back(bargv.at(bb +1));
             gammy.push_back(std::make_pair(argv, op ));
-        }
-        else if (bargv.at(bb).compare(">")){
-            op.push_back ( "2");
-            op.push_back(bargv.at(bb +1));
-            gammy.push_back(std::make_pair(argv, op));
-        }
-        else if (bargv.at(bb).compare(">>")){
-            op.push_back ( "3");
-            op.push_back(bargv.at(bb +1));
-            gammy.push_back(std::make_pair(argv, op));
-        }
-        else if (bargv.at(bb).compare("|")){
-            op.push_back ( "4");
-            gammy.push_back(std::make_pair(argv, op));
-        }
-        else{
-            guddy:
-            op.push_back( "0");
-            gammy.push_back(std::make_pair(argv, op));
-            caset = 0;
-        }
-
-        dd =0;
-        if (caset){
-            if((bb + 1) >= bargv.size()){
-                buddy:
-                std::cerr << "Miss-matched i/o dierection!\n";
-                return -1;
-            }
-        }
-        bb++;
-
-        if (bb < bargv.size() && bargv.at(bb).compare("|")){
-            op.at(0) = "5";
-            gammy.push_back(std::make_pair(argv, op));
             bb++;
         }
-
-        if (caset){
-            if((bb + 1) >= bargv.size()){
-                std::cerr << "Miss-matched i/o dierection!\n";
-                return -1;
+        else{
+            if (bb < bargv.size() && !op.back().compare("4")){
+                if (dd == 0){
+                    std::cerr << "Miss-matched i/o dierection!\n";
+                    return -1;
+                }
+                else{
+                    gammy.push_back(std::make_pair(argv,op));
+                    if (bb == 0){
+                        std::cerr << "Miss-matched i/o dierection!\n";
+                        return -1;
+                    }
+                    bb--;
+                }
+            }
+            else if (bb >= bargv.size()){
+                gammy.push_back(std::make_pair(argv, op));
+            }
+            else{
+                gammy.push_back(std::make_pair(argv, op));
+                bb--;
             }
         }
+        dd =0;
+
     }
-
     vectortest(gammy);
-   // int holla = fcall(argv);
+    int holla = fcall(gammy);
+   // int holla = 1;
+    free (argv);
+    return holla;
 
-   // return holla;
-   free (argv);
-
-   return 1;
 }
 
 int findclosest(std::string bobo ){
