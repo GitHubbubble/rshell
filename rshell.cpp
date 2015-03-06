@@ -27,16 +27,14 @@ void vectortest(std::vector < std::pair<char**, std:: vector<std::string> > > wo
     }
 }
 
-
-
-
-
 int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
 
     const int pipew = 1;
     const int piper = 0;
     //gotta say, fully understanding pipe I really appriciate how much sense this saves me.
 
+
+    int status;
     if (strlen(argvv.at(0).first[0]) == 0){
 
         return -1;
@@ -46,24 +44,47 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
         return 1;
     }
 
-    int n = 0;
+    //counter of weights
 
-    std::vector<int*> fdv;
-
-    for (unsigned int k = 0; k < argvv.size(); k++){
-        if (!argvv.at(k).second.at(0).compare("4") ){
-            int fd[2];
-            if(pipe(fd) == -1)
-                perror("pipe");
-            fdv.push_back(fd);
-        }
-        else
-        {
-            fdv.push_back(NULL);
-        }
-    }
 
     unsigned int waitcount = 0;
+    std::vector<int> pipecount;
+
+    int pdf[1024];
+    int n = 0;
+
+    for (unsigned int k = 0; k < argvv.size(); k++){
+        if (!argvv.at(k).second.at(0).compare("4") ){ //figures out how many pipes we'll need
+            if(pipe(pdf+(2*k)) == -1)
+                perror("pipe");
+          /*  if (-1 == close(pdf[((2*k)+0)]))
+                perror("close");
+            if (-1 == close (pdf[((2*k) +1)]))
+                perror("close");*/
+            pipecount.push_back(2*k);
+
+        }
+            waitcount++;
+
+    }
+
+
+    /* PATH FINDER - Locate paths and put them in the vector
+     */
+     std::vector<char*> path;
+
+    /* getenv()
+     */
+
+     /* parse using ":"
+     */
+
+     /* place into vector
+     *
+     */
+
+
+
 
     int stdins;
     int stdouts;
@@ -92,7 +113,6 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
             //(I) ==============
             int y = ((int)argvv.at(i).second.at(0).at(0)-48);
 
-
             switch (y){
                 case 0:
                 break;
@@ -113,7 +133,7 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
                 break;
 
                 case 4:
-                if(-1 == dup2(fdv.at(i)[piper],0 ))
+                if(-1 == dup2(pdf[((2*i)+piper)],0 ))
                     perror("dup");
                 break;
 
@@ -122,7 +142,6 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
             //(I +1) ==============
             if (i+1 < argvv.size()){
                int z = ((int)argvv.at(i+1).second.at(0).at(0)-48);
-
                 switch (z){
                     case 0:
                     break;
@@ -147,40 +166,53 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
                     break;
 
                     case 4:
-                        if(-1 == dup2(fdv.at(i+1)[pipew],1 ))
+                        if(-1 == dup2(pdf[(((i+1)*2) + pipew)],1 ))
                             perror("dup");
                     break;
                  }
             }
 
-            for(unsigned int kg; kg < fdv.size(); kg++){
-                if (fdv.at(kg) != NULL){
-                    if (-1 == close(fdv.at(kg)[0]))
-                        perror("close");
-                    if (-1 == close(fdv.at(kg)[1]))
-                        perror("close");
-                }
+
+
+            for(unsigned int kg = 0; kg < pipecount.size(); kg++){
+                if (-1 == close(pdf[pipecount.at(kg)]))
+                    perror("close");
+                if (-1 == close(pdf[pipecount.at(kg) +1]))
+                    perror("close");
             }
 
             if (y != 2 && y!= 3){
-                if (0 < execvp(argvv.at(i).first[0],argvv.at(i).first )){
-                    n = -1;
+
+                /* look through all paths */
+                for (]unsigned int pp  = 0; pp < path
+                /*catenate current path with call examined*/
+
+
+                if (0 < execvp(,argvv.at(i).first )){
                     perror("execvp");
+                    n = -1;
                 }
-                else
-                    waitcount++;
             }
 
             exit(1);  //when the child process finishes doing what we want it to, cout,
-                      //we want to kill the child process so it doesn’t go on in the program so we exit
+            //we want to kill the child process so it doesn’t go on in the program so we exit
 
         }
 
     }
 
+    for(unsigned int kg = 0; kg < pipecount.size(); kg++){
+        if (-1 == close(pdf[pipecount.at(kg)]))
+            perror("close");
+        if (-1 == close(pdf[pipecount.at(kg) +1]))
+            perror("close");
+
+
+    }
+
     for (unsigned int f = 0; f < waitcount; f++){
-        if (-1 == wait(0))
-        perror("wait");
+        if (-1 == wait(&status))
+            perror("wait");
     }
 
     if (-1 == dup2(stdins, 0))
@@ -193,7 +225,6 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
         perror("close");
     if (-1 == close(stdouts))
         perror("close");
-
 
     return n;
 }
