@@ -18,6 +18,10 @@ change current directory
 |            |
 ==============
 
+To create the binary files, run the following command:
+make
+
+This will generate a bin folder with rshell inside
 
 ===============EXECUTE COMMANDS=======================
 
