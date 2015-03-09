@@ -1,3 +1,23 @@
+/*
+
+This program is a simple C shell.
+Copyright (C) 2015  Wolfgang Finkbeiner
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -12,6 +32,15 @@
 #include <sstream>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <signal.h>
+
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
 
 void vectortest(std::vector < std::pair<char**, std:: vector<std::string> > > wow1)
 {
@@ -43,6 +72,25 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
 
         return 1;
     }
+    else if (!strcmp(argvv.at(0).first[0],"cd")){
+
+       char * dire;
+       char buff[1024];
+
+       dire = getcwd(buff, 1025 );
+       strcat(dire, "/");
+       strcat(dire, argvv.at(0).first[1]);
+
+       puts(dire);
+
+       if (-1 == chdir(dire)){
+           perror ("chdir");
+           return -1;
+       }
+
+       return 0;
+
+    }
 
     //counter of weights
 
@@ -68,22 +116,30 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
 
     }
 
-
     /* PATH FINDER - Locate paths and put them in the vector
      */
-     std::vector<char*> path;
+    std::vector<char*> path;
 
     /* getenv()
      */
 
-     /* parse using ":"
+
+    char superpath[1024];
+
+    strcpy(superpath, getenv("PATH"));
+
+    //puts(superpath);
+
+     /* parse using ":" and place into a vector
      */
+    path.push_back(strtok(superpath, ":"));
 
-     /* place into vector
-     *
-     */
+    while (path.back() != NULL){
+        path.push_back(strtok(NULL, ":"));
+    }
 
 
+    //puts(superpath);
 
 
     int stdins;
@@ -107,6 +163,9 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
 
         else if(pid == 0)//when pid is 0 you are in the child process
         {
+
+            signal(SIGINT, SIG_DFL);
+
             int fdx;
             int fdy;
 
@@ -181,15 +240,37 @@ int fcall(std::vector < std::pair<char**, std::vector <std::string> > > argvv ){
                     perror("close");
             }
 
+
+            int g = -1;
+            unsigned int pp  = 0;
+
             if (y != 2 && y!= 3){
-
                 /* look through all paths */
-                for (]unsigned int pp  = 0; pp < path
-                /*catenate current path with call examined*/
+                while( pp < (path.size() -1) && g == -1)
+                {
+                    /*catenate current path with call examined*/
 
+                    char * target = new char [1024];
 
-                if (0 < execvp(,argvv.at(i).first )){
-                    perror("execvp");
+                    strcpy(target, path.at(pp));
+                    strcat(target, "/" );
+                    strcat(target, argvv.at(i).first[0]);
+                    strcat(target, "\0");
+
+                    if ( execv(target,argvv.at(i).first) < 0 ){
+                    }
+                    else
+                    {
+                        g = 0;
+                    }
+
+                    delete [] target;
+
+                    pp++;
+                }
+
+                if (g == -1){
+                    perror("execv");
                     n = -1;
                 }
             }
@@ -246,6 +327,7 @@ int  breakitup (std::string hamma){
     int dd = 0; //not one of my better names
     std::vector<std::pair<char**, std::vector<std::string> > > gammy;
     char** argv;
+    //int argvcount = 0;
 
     for(unsigned int bb = 0; bb < bargv.size(); bb++){
         std::vector<std::string > op;
@@ -268,14 +350,19 @@ int  breakitup (std::string hamma){
         else{
             op.push_back("0");
         }
+
         argv = (char **) malloc (1024);
         while(bb < bargv.size() && bargv.at(bb).compare(">") && bargv.at(bb).compare("<")&& bargv.at(bb).compare(">>")&& bargv.at(bb).compare("|") )
-        {    //if strcat((char*)bargv.at(bb).c_str(), "\0") == <
+        {
+           // argv[dd] = (char*)  malloc ( bargv.at(bb).size() + 2 );
             argv[dd] = strcat((char*)bargv.at(bb).c_str(), "\0");
+
+           // argvcount++;
             bb++;
             dd++;
         }
         argv[dd] =NULL;
+
 
         if (bb < bargv.size() &&  !bargv.at(bb).compare("<")){
             op.pop_back();
@@ -312,8 +399,12 @@ int  breakitup (std::string hamma){
     }
     vectortest(gammy);
     int holla = fcall(gammy);
-   // int holla = 1;
-    free (argv);
+
+    for (unsigned int i = 0; i < gammy.size(); i++){
+        if (!(gammy.at(i).second[0] == "2") && !(gammy.at(i).second[0] == "3"))
+            free(gammy.at(i).first);
+    }
+
     return holla;
 
 }
@@ -376,20 +467,37 @@ int findclosest(std::string bobo ){
 int main(){
 //welcome to the really awesome shell!
 
+    //initialize signal
+    signal(SIGINT, SIG_IGN );
+
+    char * namey = getlogin();
 
     while(1){
-        std::cout << "rash$ ";
+
+        printf(ANSI_COLOR_RED   "rash-" ANSI_COLOR_BLUE "%s"    ANSI_COLOR_RED  "$" ANSI_COLOR_RESET    " ", namey);
+
         std::string chunky;
         std::getline(std::cin, chunky);
 
+        std::string smoothly;
+
+        if (!chunky.empty()){
+            if (chunky.at(0) == '#') chunky = " " + chunky;
+        }
+
         char *cstr = new char [chunky.length() + 1];
         strcpy(cstr, chunky.c_str());
+
         char * cstr2;
         cstr2 = strtok(cstr, "#");
-        std::string smoothly(cstr2);
 
-        char mustpass = 0;
-        char didpass = 0;
+        if (cstr2 == NULL)
+            smoothly = "";
+        else
+            smoothly = cstr2;
+
+        delete []cstr;
+
 
         std::vector<std::pair<char, std::string> > conn;
 
@@ -398,46 +506,51 @@ int main(){
 
         while (smoothly.size()!= 0){
 
+            fc = findclosest(smoothly);
+
             switch (fc){
-                    case 0:
-                //    std::cout << "that's it";
-                        conn.push_back(std::make_pair(0,smoothly));
-                        smoothly.clear();
-                    break;
+                case 0:
+                    conn.push_back(std::make_pair(0,smoothly));
+                    smoothly.clear();
+                break;
 
-                    case 1:
-              //      std::cout << ";";
-                      temp = smoothly.find(";");
-           // std::cerr << "&" << smoothly.substr(0, temp) << "\n";
-                      conn.push_back(std::make_pair(0,smoothly.substr(0, temp)));
-                      smoothly = smoothly.substr(temp+1);
-                    break;
+                case 1:
+                  temp = smoothly.find(";");
+                  conn.push_back(std::make_pair(0,smoothly.substr(0, temp)));
+                  smoothly = smoothly.substr(temp+1);
+                break;
 
-                    case 2:
-            //        std::cout << "&&";
-                      temp = smoothly.find("&&");
-          //  std::cerr << "&" << smoothly.substr(0, temp) << "\n";
-                      conn.push_back(std::make_pair(2,smoothly.substr(0, temp)));
-                      smoothly = smoothly.substr(temp+2 );
-                    break;
+                case 2:
+                  temp = smoothly.find("&&");
+                  conn.push_back(std::make_pair(2,smoothly.substr(0, temp)));
+                  smoothly = smoothly.substr(temp+2 );
+                break;
 
-                    case 3:
-                  //  std::cout << "||";
-                      temp = smoothly.find("||");
-          //  std::cerr << "&" << smoothly.substr(0, temp) << "\n";
-                      conn.push_back(std::make_pair(1,smoothly.substr(0, temp)));
-                      smoothly = smoothly.substr(temp+2 );
-                    break;
+                case 3:
+                  temp = smoothly.find("||");
+                  conn.push_back(std::make_pair(1,smoothly.substr(0, temp)));
+                  smoothly = smoothly.substr(temp+2 );
+                break;
 
-                    default:
-                    std::cout << "UH OH!";
+                default:
+                std::cout << "UH OH!";
             }
+
         }
+
+       char mustpass = 0;
+       char didpass = 0;
 
        for(unsigned int i = 0; i < conn.size(); i++){
 
                int a = -1;
                char cancheck = 0;
+            std::cout << "mustpass" << (int) mustpass  << std::endl;
+
+                std::cout << "didpass" << (int)didpass << std::endl;
+
+
+
             if (mustpass == 2 && didpass == 1){
                 cancheck = 1;
             }
@@ -450,23 +563,27 @@ int main(){
             else
                 didpass = 0;
 
-            if (cancheck){
-                a = breakitup(conn.at(i).second);
+            std::cout << "cancheck" << (int)cancheck << std::endl;
 
-                //a = fcall(breakitup(conn.at(i).second));
+            if (cancheck){
+
+                a = breakitup(conn.at(i).second);
                 if (a < 0)
                    didpass = 0;
                 else if (a == 0)
                    didpass = 1;
                else if (a > 0){
-                   delete[] cstr;
                    goto skippy;
                }
             }
 
+
+
+            std::cout << "didpass2" << (int)didpass << std::endl;
             mustpass = conn.at(i).first;
-        }
-     delete [] cstr;
+
+            std::cout << "mustpass2" << (int) mustpass << std::endl << std::endl;
+            }
     }
     skippy:
     std::cout << "Ar revoir!\n";
