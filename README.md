@@ -21,7 +21,7 @@ change current directory
 To create the binary files, run the following command:
 make
 
-This will generate a bin folder with rshell inside
+This will generate a bin folder with rshell inside.
 
 ===============EXECUTE COMMANDS=======================
 
@@ -151,10 +151,13 @@ OVERVIEW
 
 lists files depending on flags and optional target file
 
+To create the binary file, run the following:
+make
+
+you can access ls with "bin/ls"
 
 $./ls .
 > README main.cpp out
-
 
 ./ls -[FLAG] [file]
 
