@@ -1,0 +1,311 @@
+Script started on Mon 09 Mar 2015 06:40:57 PM PDT
+~
+wfink001@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd [K[K[Kcd 100[K[K[K[K[K[Kvim rshell.cpp[K[K[K[K[K[K[K[K[K[K[K[K[K[Kvim rshell.cpp [K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd src
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/rshel;[Kl
+[31mrash-[34mwfink001[31m$[0m ls
+\	 daboo		    fanny      ls.cpp	       newOutputFile2  README.md   supershell  tk
+a.out	 distance1	    fans       ls.o	       obj	       rm.cpp	   test        tokex.cpp
+app	 existingInputFile  file       lsy	       output.txt      rshell.cpp  tests       typescript
+bin	 famcho		    input      Makefile        pants.txt       sadness	   thanks      walf
+blastit  fancy		    input.txt  mv.cpp	       pipetest        shelly	   thanks2     walf2
+cp.cpp	 fand		    LICENSE    newOutputFile1  readme	       sjkim	   Timer.h     welf
+[31mrash-[34mwfink001[31m$[0m ls > thefile
+[31mrash-[34mwfink001[31m$[0m cat thefile
+\
+a.out
+app
+bin
+blastit
+cp.cpp
+daboo
+distance1
+existingInputFile
+famcho
+fancy
+fand
+fanny
+fans
+file
+input
+input.txt
+LICENSE
+ls.cpp
+ls.o
+lsy
+Makefile
+mv.cpp
+newOutputFile1
+newOutputFile2
+obj
+output.txt
+pants.txt
+pipetest
+readme
+README.md
+rm.cpp
+rshell.cpp
+sadness
+shelly
+sjkim
+supershell
+test
+tests
+thanks
+thanks2
+thefile
+Timer.h
+tk
+tokex.cpp
+typescript
+walf
+walf2
+welf
+[31mrash-[34mwfink001[31m$[0m cat < the  file
+\
+a.out
+app
+bin
+blastit
+cp.cpp
+daboo
+distance1
+existingInputFile
+famcho
+fancy
+fand
+fanny
+fans
+file
+input
+input.txt
+LICENSE
+ls.cpp
+ls.o
+lsy
+Makefile
+mv.cpp
+newOutputFile1
+newOutputFile2
+obj
+output.txt
+pants.txt
+pipetest
+readme
+README.md
+rm.cpp
+rshell.cpp
+sadness
+shelly
+sjkim
+supershell
+test
+tests
+thanks
+thanks2
+thefile
+Timer.h
+tk
+tokex.cpp
+typescript
+walf
+walf2
+welf
+[31mrash-[34mwfink001[31m$[0m ls  ls    echo hello! >          Hello! > app
+[31mrash-[34mwfink001[31m$[0m echo "How are you?" > a  > app
+[31mrash-[34mwfink001[31m$[0m echo "I' m dandy, thanks! >> app
+[31mrash-[34mwfink001[31m$[0m cat < app
+Hello!
+
+app
+bin
+blastit
+cp.cpp
+daboo
+distance1
+existingInputFile
+famcho
+fancy
+fand
+fanny
+fans
+file
+input
+input.txt
+LICENSE
+ls.cpp
+ls.o
+lsy
+Makefile
+mv.cpp
+newOutputFile1
+newOutputFile2
+obj
+output.txt
+pants.txt
+readme
+README.md
+rm.cpp
+rshell.cpp
+sadness
+shelly
+sjkim
+supershell
+test
+tests
+thanks
+thanks2
+Timer.h
+tk
+tokex.cpp
+typescript
+walf
+walf2
+welf
+\
+a.out
+app
+bin
+blastit
+cp.cpp
+daboo
+distance1
+existingInputFile
+famcho
+fancy
+fand
+fanny
+fans
+file
+input
+input.txt
+LICENSE
+ls.cpp
+ls.o
+lsy
+Makefile
+mv.cpp
+newOutputFile1
+newOutputFile2
+obj
+output.txt
+pants.txt
+readme
+README.md
+rm.cpp
+rshell.cpp
+sadness
+shelly
+sjkim
+supershell
+test
+tests
+thanks
+thanks2
+Timer.h
+tk
+tokex.cpp
+typescript
+walf
+walf2
+welf
+\
+a.out
+app
+bin
+blastit
+cp.cpp
+daboo
+distance1
+existingInputFile
+famcho
+fancy
+fand
+fanny
+fans
+file
+input
+input.txt
+LICENSE
+ls.cpp
+ls.o
+lsy
+Makefile
+mv.cpp
+newOutputFile1
+newOutputFile2
+obj
+output.txt
+pants.txt
+readme
+README.md
+rm.cpp
+rshell.cpp
+sadness
+shelly
+sjkim
+supershell
+test
+tests
+thanks
+thanks2
+Timer.h
+tk
+tokex.cpp
+typescript
+walf
+walf2
+welf
+"How are you?"
+"Im dandy, thanks!
+[31mrash-[34mwfink001[31m$[0m ^[[A    c cat>        echo "Howdy!"   > greeting
+[31mrash-[34mwfink001[31m$[0m echo "Just fine, thanks!" >  > greeting
+[31mrash-[34mwfink001[31m$[0m ls  cat < greeting
+"Howdy!"
+"Just fine, thanks!"
+[31mrash-[34mwfink001[31m$[0m e echo "Would be less characters to simply tu y         use the regular d file decriptor t rather than using append!" >> appendy
+[31mrash-[34mwfink001[31m$[0m cat < appendy
+"Would be less characters to use the regular file decriptor rather than using append!"
+[31mrash-[34mwfink001[31m$[0m cat     echo "wow" | tr a-z a A-Z
+"WOW"
+[31mrash-[34mwfink001[31m$[0m echo "wow" | tr ai -z A-Z | tr a A-Z a-z
+"wow"
+[31mrash-[34mwfink001[31m$[0m ^[[A    ech   cat < greeting | tr a-z A-Z
+"HOWDY!"
+"JUST FINE, THANKS!"
+[31mrash-[34mwfink001[31m$[0m ^[[A    cat < greeting | tr a-z A-Z | cat > gre   loudgreeting
+[31mrash-[34mwfink001[31m$[0m cat loud    < loudgreeting
+"HOWDY!"
+"JUST FINE, THANKS!"
+[31mrash-[34mwfink001[31m$[0m echo "wow  "               | tr      a-az                                 why this many spaces?"                  | ter  r a-z       a-z   A-Z
+"WHY THIS MANY SPACES?"
+[31mrash-[34mwfink001[31m$[0m echo "that    toofewspaces"|tra  - a-z A-Z
+"toofewspaces"|tr a-z A-Z
+[31mrash-[34mwfink001[31m$[0m exit
+Ar revoir!
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m exit
+exit
+~
+wfink001@hammer $ exit
+exit
+
+Script done on Mon 09 Mar 2015 06:50:54 PM PDT
