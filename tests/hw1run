@@ -1,0 +1,1465 @@
+Script started on Mon 09 Mar 2015 05:45:53 PM PDT
+~
+wfink001@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m .[Kcd 100[K[K[K[K100 [K[K[K[K[Ks[Kd [K100 [K[K[K[K[Ks [K100[K[K[K100 cim [K[K[K[Kvim rshell[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd src
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m vim rshell[K[K[K[K[K[K[K[K[K[K./bin/ls
+README.md  shelly  ls  rshell.cpp  supershell  Makefile  ls.cpp  lsy  fanny  LICENSE  famcho  output.txt  input.txt  bin  daboo  ls.o  newOutputFile2  obj  readme  newOutputFile1  a.out  rm.cpp  Timer.h  distance1  mv.cpp  pants.txt  walf  walf2  blastit  sadness  welf  fancy  thanks  thanks2  fand  fans  sjkim  existingInputFile  tests  \  test  tk  tokex.cpp  cp.cpp  typescript  
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls -a
+.  ..  README.md  .git  shelly  ls  rshell.cpp  supershell  Makefile  ls.cpp  lsy  fanny  LICENSE  .notrshell  famcho  output.txt  input.txt  bin  daboo  ls.o  newOutputFile2  obj  readme  newOutputFile1  a.out  rm.cpp  Timer.h  distance1  mv.cpp  pants.txt  walf  walf2  blastit  sadness  welf  fancy  thanks  thanks2  fand  fans  sjkim  existingInputFile  tests  \  test  tk  tokex.cpp  cp.cpp  typescript  
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls -a[Kr[Kl
+-rw-------   1 wfink001 classes  4465 Mar  9 15:23 README.md
+-rwx------   1 wfink001 classes 30394 Feb  3 16:54 shelly
+-rwx------   1 wfink001 classes     0 Feb 22 14:49 ls
+-rw-------   1 wfink001 classes 14634 Mar  9 17:16 rshell.cpp
+-rwx------   1 wfink001 classes 266738 Mar  9 14:31 supershell
+-rw-------   1 wfink001 classes   235 Mar  9 15:23 Makefile
+-rw-------   1 wfink001 classes  8109 Mar  9 17:39 ls.cpp
+-rwx------   1 wfink001 classes 76254 Feb  8 21:21 lsy
+drwx------   2 wfink001 classes  4096 Feb  8 16:39 fanny
+-rw-------   1 wfink001 classes 35118 Mar  9 15:23 LICENSE
+drwx------   3 wfink001 classes  4096 Feb  8 20:49 famcho
+-rw-------   1 wfink001 classes   137 Feb 22 14:50 output.txt
+-rw-------   1 wfink001 classes    79 Mar  9 14:46 input.txt
+drwx------   2 wfink001 classes  4096 Mar  9 17:39 bin
+-rw-------   1 wfink001 classes   117 Feb 13 12:33 daboo
+-rw-------   1 wfink001 classes 61712 Feb  9 04:36 ls.o
+-rwx------   1 wfink001 classes   245 Mar  5 16:38 newOutputFile2
+drwx------   2 wfink001 classes  4096 Feb  9 03:00 obj
+-rw-------   1 wfink001 classes     0 Feb  9 04:40 readme
+-rw-------   1 wfink001 classes   245 Mar  5 16:42 newOutputFile1
+-rwx------   1 wfink001 classes 233205 Feb 25 07:20 a.out
+-rw-------   1 wfink001 classes  1292 Feb 27 13:09 rm.cpp
+-rw-------   1 wfink001 classes  2620 Feb 13 13:01 Timer.h
+-rwx------   1 wfink001 classes 4953699 Feb 27 13:27 distance1
+-rw-------   1 wfink001 classes    53 Feb 27 03:35 mv.cpp
+-rwx------   1 wfink001 classes     7 Mar  4 16:35 pants.txt
+-rwx------   1 wfink001 classes     9 Mar  5 15:48 walf
+-rwx------   1 wfink001 classes     9 Mar  5 15:47 walf2
+-rwx------   1 wfink001 classes     7 Mar  4 16:46 blastit
+-rwx------   1 wfink001 classes     8 Mar  4 16:56 sadness
+-rw-------   1 wfink001 classes     7 Mar  5 16:00 welf
+-rwx------   1 wfink001 classes     7 Mar  5 15:25 fancy
+-rwx------   1 wfink001 classes     7 Mar  5 16:09 thanks
+-rwx------   1 wfink001 classes     9 Mar  5 16:10 thanks2
+-rwx------   1 wfink001 classes     7 Mar  5 16:15 fand
+-rwx------   1 wfink001 classes     6 Mar  5 16:17 fans
+-rwx------   1 wfink001 classes     7 Mar  5 16:19 sjkim
+-rw-------   1 wfink001 classes   245 Mar  5 16:35 existingInputFile
+drwx------   2 wfink001 classes  4096 Mar  9 17:41 tests
+-rw-------   1 wfink001 classes 12861 Mar  5 23:31 \
+drwx------   2 wfink001 classes  4096 Mar  9 11:33 test
+-rwx------   1 wfink001 classes  7755 Mar  9 00:27 tk
+-rw-------   1 wfink001 classes   291 Mar  9 00:27 tokex.cpp
+-rw-------   1 wfink001 classes  2642 Mar  9 15:23 cp.cpp
+-rw-------   1 wfink001 classes   138 Mar  9 17:40 typescript
+
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls -l[Kr[KR
+.:
+README.md  shelly  ls  rshell.cpp  supershell  Makefile  ls.cpp  lsy  fanny  LICENSE  famcho  output.txt  input.txt  bin  daboo  ls.o  newOutputFile2  obj  readme  newOutputFile1  a.out  rm.cpp  Timer.h  distance1  mv.cpp  pants.txt  walf  walf2  blastit  sadness  welf  fancy  thanks  thanks2  fand  fans  sjkim  existingInputFile  tests  \  test  tk  tokex.cpp  cp.cpp  typescript  
+
+
+./fanny:
+thegoods.txt  
+
+
+./famcho:
+bootycalls.txt  holla  
+
+
+./famcho/holla:
+
+
+
+./bin:
+rshell  ls  cp  
+
+
+./obj:
+
+
+
+./tests:
+hw0run  hw3  hw0  hw1  hw1run  
+
+
+./test:
+
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls -R[KalR
+.:
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 .
+drwx------  57 wfink001 classes 12288 Mar  9 17:39 ..
+-rw-------   1 wfink001 classes  4465 Mar  9 15:23 README.md
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 .git
+-rwx------   1 wfink001 classes 30394 Feb  3 16:54 shelly
+-rwx------   1 wfink001 classes     0 Feb 22 14:49 ls
+-rw-------   1 wfink001 classes 14634 Mar  9 17:16 rshell.cpp
+-rwx------   1 wfink001 classes 266738 Mar  9 14:31 supershell
+-rw-------   1 wfink001 classes   235 Mar  9 15:23 Makefile
+-rw-------   1 wfink001 classes  8109 Mar  9 17:39 ls.cpp
+-rwx------   1 wfink001 classes 76254 Feb  8 21:21 lsy
+drwx------   2 wfink001 classes  4096 Feb  8 16:39 fanny
+-rw-------   1 wfink001 classes 35118 Mar  9 15:23 LICENSE
+drwx------   3 wfink001 classes  4096 Feb  2 00:12 .notrshell
+drwx------   3 wfink001 classes  4096 Feb  8 20:49 famcho
+-rw-------   1 wfink001 classes   137 Feb 22 14:50 output.txt
+-rw-------   1 wfink001 classes    79 Mar  9 14:46 input.txt
+drwx------   2 wfink001 classes  4096 Mar  9 17:39 bin
+-rw-------   1 wfink001 classes   117 Feb 13 12:33 daboo
+-rw-------   1 wfink001 classes 61712 Feb  9 04:36 ls.o
+-rwx------   1 wfink001 classes   245 Mar  5 16:38 newOutputFile2
+drwx------   2 wfink001 classes  4096 Feb  9 03:00 obj
+-rw-------   1 wfink001 classes     0 Feb  9 04:40 readme
+-rw-------   1 wfink001 classes   245 Mar  5 16:42 newOutputFile1
+-rwx------   1 wfink001 classes 233205 Feb 25 07:20 a.out
+-rw-------   1 wfink001 classes  1292 Feb 27 13:09 rm.cpp
+-rw-------   1 wfink001 classes  2620 Feb 13 13:01 Timer.h
+-rwx------   1 wfink001 classes 4953699 Feb 27 13:27 distance1
+-rw-------   1 wfink001 classes    53 Feb 27 03:35 mv.cpp
+-rwx------   1 wfink001 classes     7 Mar  4 16:35 pants.txt
+-rwx------   1 wfink001 classes     9 Mar  5 15:48 walf
+-rwx------   1 wfink001 classes     9 Mar  5 15:47 walf2
+-rwx------   1 wfink001 classes     7 Mar  4 16:46 blastit
+-rwx------   1 wfink001 classes     8 Mar  4 16:56 sadness
+-rw-------   1 wfink001 classes     7 Mar  5 16:00 welf
+-rwx------   1 wfink001 classes     7 Mar  5 15:25 fancy
+-rwx------   1 wfink001 classes     7 Mar  5 16:09 thanks
+-rwx------   1 wfink001 classes     9 Mar  5 16:10 thanks2
+-rwx------   1 wfink001 classes     7 Mar  5 16:15 fand
+-rwx------   1 wfink001 classes     6 Mar  5 16:17 fans
+-rwx------   1 wfink001 classes     7 Mar  5 16:19 sjkim
+-rw-------   1 wfink001 classes   245 Mar  5 16:35 existingInputFile
+drwx------   2 wfink001 classes  4096 Mar  9 17:41 tests
+-rw-------   1 wfink001 classes 12861 Mar  5 23:31 \
+drwx------   2 wfink001 classes  4096 Mar  9 11:33 test
+-rwx------   1 wfink001 classes  7755 Mar  9 00:27 tk
+-rw-------   1 wfink001 classes   291 Mar  9 00:27 tokex.cpp
+-rw-------   1 wfink001 classes  2642 Mar  9 15:23 cp.cpp
+-rw-------   1 wfink001 classes   138 Mar  9 17:40 typescript
+
+
+
+./.git:
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+drwx------   5 wfink001 classes  4096 Feb  1 19:44 refs
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 branches
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 info
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 hooks
+-rw-------   1 wfink001 classes    73 Feb  1 19:37 description
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 objects
+-rw-------   1 wfink001 classes    23 Mar  9 15:23 HEAD
+-rw-------   1 wfink001 classes   201 Feb  3 00:12 config
+-rw-------   1 wfink001 classes    63 Mar  9 15:21 COMMIT_EDITMSG
+-rw-------   1 wfink001 classes   472 Mar  9 15:23 index
+drwx------   3 wfink001 classes  4096 Feb  1 19:39 logs
+-rw-------   1 wfink001 classes     0 Feb  1 19:50 FETCH_HEAD
+-rw-------   1 wfink001 classes    68 Feb  9 04:52 TAG_EDITMSG
+-rw-------   1 wfink001 classes    41 Mar  9 15:23 ORIG_HEAD
+-rw-------   1 wfink001 classes    93 Feb  9 04:58 #TAG_EDITMSG#
+
+
+
+./.git/refs:
+drwx------   5 wfink001 classes  4096 Feb  1 19:44 .
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 ..
+drwx------   2 wfink001 classes  4096 Mar  9 15:23 heads
+drwx------   2 wfink001 classes  4096 Feb  9 04:57 tags
+drwx------   3 wfink001 classes  4096 Feb  1 19:44 remotes
+
+
+
+./.git/refs/heads:
+drwx------   2 wfink001 classes  4096 Mar  9 15:23 .
+drwx------   5 wfink001 classes  4096 Feb  1 19:44 ..
+-rw-------   1 wfink001 classes    41 Mar  9 15:23 master
+-rw-------   1 wfink001 classes    41 Feb 13 11:13 exec
+-rw-------   1 wfink001 classes    41 Feb  9 04:50 ls
+-rw-------   1 wfink001 classes    41 Mar  9 15:21 redirect
+
+
+
+./.git/refs/tags:
+drwx------   2 wfink001 classes  4096 Feb  9 04:57 .
+drwx------   5 wfink001 classes  4096 Feb  1 19:44 ..
+-rw-------   1 wfink001 classes    41 Feb  9 04:57 hw1
+
+
+
+./.git/refs/remotes:
+drwx------   3 wfink001 classes  4096 Feb  1 19:44 .
+drwx------   5 wfink001 classes  4096 Feb  1 19:44 ..
+drwx------   2 wfink001 classes  4096 Mar  9 15:24 origin
+
+
+
+./.git/refs/remotes/origin:
+drwx------   2 wfink001 classes  4096 Mar  9 15:24 .
+drwx------   3 wfink001 classes  4096 Feb  1 19:44 ..
+-rw-------   1 wfink001 classes    41 Mar  9 15:24 master
+-rw-------   1 wfink001 classes    41 Feb  3 14:03 exec
+-rw-------   1 wfink001 classes    41 Feb  9 03:31 ls
+-rw-------   1 wfink001 classes    41 Feb 22 23:59 redirect
+
+
+
+./.git/branches:
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 .
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 ..
+
+
+
+./.git/info:
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 .
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 ..
+-rw-------   1 wfink001 classes   240 Feb  1 19:37 exclude
+
+
+
+./.git/hooks:
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 .
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 ..
+-rwx------   1 wfink001 classes  1348 Feb  1 19:37 pre-push.sample
+-rwx------   1 wfink001 classes  4951 Feb  1 19:37 pre-rebase.sample
+-rwx------   1 wfink001 classes   452 Feb  1 19:37 applypatch-msg.sample
+-rwx------   1 wfink001 classes  1239 Feb  1 19:37 prepare-commit-msg.sample
+-rwx------   1 wfink001 classes  3611 Feb  1 19:37 update.sample
+-rwx------   1 wfink001 classes   896 Feb  1 19:37 commit-msg.sample
+-rwx------   1 wfink001 classes   398 Feb  1 19:37 pre-applypatch.sample
+-rwx------   1 wfink001 classes  1635 Feb  1 19:37 pre-commit.sample
+-rwx------   1 wfink001 classes   189 Feb  1 19:37 post-update.sample
+
+
+
+./.git/objects:
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 .
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 ..
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 pack
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 info
+drwx------   2 wfink001 classes  4096 Feb  8 16:33 90
+drwx------   2 wfink001 classes  4096 Feb  1 19:39 df
+drwx------   2 wfink001 classes  4096 Feb  1 19:39 34
+drwx------   2 wfink001 classes  4096 Feb  1 20:12 81
+drwx------   2 wfink001 classes  4096 Mar  5 22:55 44
+drwx------   2 wfink001 classes  4096 Feb  5 23:20 7d
+drwx------   2 wfink001 classes  4096 Feb  1 20:27 49
+drwx------   2 wfink001 classes  4096 Feb  2 22:17 36
+drwx------   2 wfink001 classes  4096 Feb 17 21:51 2d
+drwx------   2 wfink001 classes  4096 Feb  1 20:42 ec
+drwx------   2 wfink001 classes  4096 Feb  1 20:42 bd
+drwx------   2 wfink001 classes  4096 Feb  8 18:25 d1
+drwx------   2 wfink001 classes  4096 Feb  9 03:12 d8
+drwx------   2 wfink001 classes  4096 Feb  2 00:09 2a
+drwx------   2 wfink001 classes  4096 Feb  2 00:09 87
+drwx------   2 wfink001 classes  4096 Feb  9 04:50 f3
+drwx------   2 wfink001 classes  4096 Feb  2 15:06 ba
+drwx------   2 wfink001 classes  4096 Feb 23 01:37 51
+drwx------   2 wfink001 classes  4096 Feb  9 04:43 46
+drwx------   2 wfink001 classes  4096 Feb  2 18:34 fd
+drwx------   2 wfink001 classes  4096 Feb  9 04:50 27
+drwx------   2 wfink001 classes  4096 Feb  2 21:13 b5
+drwx------   2 wfink001 classes  4096 Feb 22 23:13 c4
+drwx------   2 wfink001 classes  4096 Feb 22 23:27 cb
+drwx------   2 wfink001 classes  4096 Feb  2 21:29 59
+drwx------   2 wfink001 classes  4096 Feb  2 21:29 45
+drwx------   2 wfink001 classes  4096 Feb 13 11:12 d6
+drwx------   2 wfink001 classes  4096 Feb  2 22:03 b8
+drwx------   2 wfink001 classes  4096 Feb  2 22:03 cd
+drwx------   2 wfink001 classes  4096 Feb  2 22:14 f6
+drwx------   2 wfink001 classes  4096 Feb  2 22:17 bc
+drwx------   2 wfink001 classes  4096 Feb  3 16:07 fe
+drwx------   2 wfink001 classes  4096 Feb  2 22:42 73
+drwx------   2 wfink001 classes  4096 Feb 17 21:48 22
+drwx------   2 wfink001 classes  4096 Feb  3 00:12 97
+drwx------   2 wfink001 classes  4096 Feb 13 11:12 98
+drwx------   2 wfink001 classes  4096 Feb  3 09:33 3e
+drwx------   2 wfink001 classes  4096 Feb  3 09:33 01
+drwx------   2 wfink001 classes  4096 Feb  3 09:33 ab
+drwx------   2 wfink001 classes  4096 Feb  3 12:25 86
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 1d
+drwx------   2 wfink001 classes  4096 Feb  3 14:02 80
+drwx------   2 wfink001 classes  4096 Feb  3 14:02 6b
+drwx------   2 wfink001 classes  4096 Feb 22 23:13 33
+drwx------   2 wfink001 classes  4096 Feb  3 15:31 89
+drwx------   2 wfink001 classes  4096 Feb  3 15:31 96
+drwx------   2 wfink001 classes  4096 Feb 23 00:26 7a
+drwx------   2 wfink001 classes  4096 Feb  3 16:07 28
+drwx------   2 wfink001 classes  4096 Feb  5 23:20 5a
+drwx------   2 wfink001 classes  4096 Feb  5 23:20 69
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 56
+drwx------   2 wfink001 classes  4096 Feb  8 14:32 e4
+drwx------   2 wfink001 classes  4096 Feb  8 14:32 48
+drwx------   2 wfink001 classes  4096 Feb  8 16:06 e9
+drwx------   2 wfink001 classes  4096 Feb  9 03:12 41
+drwx------   2 wfink001 classes  4096 Feb  8 16:12 79
+drwx------   2 wfink001 classes  4096 Feb  8 16:12 f2
+drwx------   2 wfink001 classes  4096 Feb  8 16:17 e0
+drwx------   2 wfink001 classes  4096 Feb 22 23:42 8d
+drwx------   2 wfink001 classes  4096 Feb  8 16:17 c5
+drwx------   2 wfink001 classes  4096 Feb  8 16:33 25
+drwx------   2 wfink001 classes  4096 Feb 23 01:27 e8
+drwx------   2 wfink001 classes  4096 Feb  8 16:49 7e
+drwx------   2 wfink001 classes  4096 Feb  8 18:47 1a
+drwx------   2 wfink001 classes  4096 Feb  8 16:49 a1
+drwx------   2 wfink001 classes  4096 Feb  8 18:11 05
+drwx------   2 wfink001 classes  4096 Feb  9 04:50 7f
+drwx------   2 wfink001 classes  4096 Feb  8 18:12 4b
+drwx------   2 wfink001 classes  4096 Feb  8 18:12 db
+drwx------   2 wfink001 classes  4096 Feb  8 18:12 c8
+drwx------   2 wfink001 classes  4096 Feb  8 18:25 21
+drwx------   2 wfink001 classes  4096 Mar  9 15:20 65
+drwx------   2 wfink001 classes  4096 Feb  8 18:47 43
+drwx------   2 wfink001 classes  4096 Feb  8 18:47 67
+drwx------   2 wfink001 classes  4096 Feb  9 04:44 6c
+drwx------   2 wfink001 classes  4096 Feb  8 19:28 ee
+drwx------   2 wfink001 classes  4096 Feb  8 20:59 f0
+drwx------   2 wfink001 classes  4096 Feb  8 20:13 eb
+drwx------   2 wfink001 classes  4096 Feb  8 20:13 b4
+drwx------   2 wfink001 classes  4096 Feb  8 20:59 8a
+drwx------   2 wfink001 classes  4096 Feb  8 20:59 76
+drwx------   2 wfink001 classes  4096 Feb  8 22:57 93
+drwx------   2 wfink001 classes  4096 Feb  8 22:57 11
+drwx------   2 wfink001 classes  4096 Feb  9 03:12 f5
+drwx------   2 wfink001 classes  4096 Feb 25 13:51 7b
+drwx------   2 wfink001 classes  4096 Feb  9 04:43 e3
+drwx------   2 wfink001 classes  4096 Feb  9 04:44 ae
+drwx------   2 wfink001 classes  4096 Feb 17 21:48 f7
+drwx------   2 wfink001 classes  4096 Feb  9 04:54 1f
+drwx------   2 wfink001 classes  4096 Feb  9 04:55 0e
+drwx------   2 wfink001 classes  4096 Feb  9 04:55 9f
+drwx------   2 wfink001 classes  4096 Feb 17 21:51 9d
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 60
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 6d
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 12
+drwx------   2 wfink001 classes  4096 Feb 13 11:19 58
+drwx------   2 wfink001 classes  4096 Feb 13 11:19 61
+drwx------   2 wfink001 classes  4096 Feb 17 21:47 3c
+drwx------   2 wfink001 classes  4096 Feb 17 21:50 19
+drwx------   2 wfink001 classes  4096 Feb 17 21:50 d3
+drwx------   2 wfink001 classes  4096 Feb 17 21:51 dc
+drwx------   2 wfink001 classes  4096 Feb 22 20:42 a0
+drwx------   2 wfink001 classes  4096 Feb 22 23:13 9e
+drwx------   2 wfink001 classes  4096 Feb 17 21:52 37
+drwx------   2 wfink001 classes  4096 Feb 22 20:42 b6
+drwx------   2 wfink001 classes  4096 Feb 22 23:26 0a
+drwx------   2 wfink001 classes  4096 Feb 22 23:27 4f
+drwx------   2 wfink001 classes  4096 Feb 22 23:42 e5
+drwx------   2 wfink001 classes  4096 Feb 22 23:42 9b
+drwx------   2 wfink001 classes  4096 Feb 23 00:27 1b
+drwx------   2 wfink001 classes  4096 Feb 23 00:27 c1
+drwx------   2 wfink001 classes  4096 Feb 23 01:27 c3
+drwx------   2 wfink001 classes  4096 Feb 23 01:27 14
+drwx------   2 wfink001 classes  4096 Feb 23 01:37 83
+drwx------   2 wfink001 classes  4096 Feb 23 01:37 64
+drwx------   2 wfink001 classes  4096 Feb 25 13:52 66
+drwx------   2 wfink001 classes  4096 Feb 25 13:52 aa
+drwx------   2 wfink001 classes  4096 Mar  5 22:55 a8
+drwx------   2 wfink001 classes  4096 Mar  5 22:55 2b
+drwx------   2 wfink001 classes  4096 Mar  9 15:19 b0
+drwx------   2 wfink001 classes  4096 Mar  9 15:19 cc
+drwx------   2 wfink001 classes  4096 Mar  9 15:21 99
+drwx------   2 wfink001 classes  4096 Mar  9 15:21 da
+
+
+
+./.git/objects/pack:
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+
+
+
+./.git/objects/info:
+drwx------   2 wfink001 classes  4096 Feb  1 19:37 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+
+
+
+./.git/objects/90:
+drwx------   2 wfink001 classes  4096 Feb  8 16:33 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   129 Feb  1 19:39 5802ac1bf0b697f0a96e533c9bcea5bb64541f
+-r--------   1 wfink001 classes   116 Feb  8 16:33 9ee69dd1a5ba9b6eace0a888fecb7ccfcfbd5e
+
+
+
+./.git/objects/df:
+drwx------   2 wfink001 classes  4096 Feb  1 19:39 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    54 Feb  1 19:39 9c3459104f32048a45bf9e845edca7ed6133ac
+
+
+
+./.git/objects/34:
+drwx------   2 wfink001 classes  4096 Feb  1 19:39 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   152 Feb  1 19:39 996b38dbd498a37878438543203a8c0efd5fef
+
+
+
+./.git/objects/81:
+drwx------   2 wfink001 classes  4096 Feb  1 20:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   164 Feb  1 20:12 fe008984d8b436ed22e497acc7ec9c448c27bb
+
+
+
+./.git/objects/44:
+drwx------   2 wfink001 classes  4096 Mar  5 22:55 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    54 Feb  1 20:12 e8bebafd151493c9fdd759c68de8e5872f2a8c
+-r--------   1 wfink001 classes   164 Mar  5 22:55 32e321ff0e2f0bcd92dbd10bd31d8bcc41e7bb
+
+
+
+./.git/objects/7d:
+drwx------   2 wfink001 classes  4096 Feb  5 23:20 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   177 Feb  1 20:12 fde77f16b0b2645978e61037f4fb6d646c17d1
+-r--------   1 wfink001 classes   161 Feb  5 23:20 50bc5d7524778b6aed07777c8ae7791d90df2c
+
+
+
+./.git/objects/49:
+drwx------   2 wfink001 classes  4096 Feb  1 20:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    64 Feb  1 20:27 4d2c4c11f868e3bc6c4eb83d7fa05e5fd6b4be
+
+
+
+./.git/objects/36:
+drwx------   2 wfink001 classes  4096 Feb  2 22:17 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    90 Feb  1 20:27 8e860188e43c0472e4681108e99c0295fb7a7b
+-r--------   1 wfink001 classes   202 Feb  1 20:57 e6c3e34d379e8f60ea721909ab53880751cfd8
+-r--------   1 wfink001 classes   190 Feb  2 22:17 6a1450e52cdf5f110dd6c87d810d47c876f080
+
+
+
+./.git/objects/2d:
+drwx------   2 wfink001 classes  4096 Feb 17 21:51 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Feb  1 20:27 0a7946d3a775bf63ef3414fd9d4a2066801f6a
+-r--------   1 wfink001 classes    87 Feb  2 21:13 a1f33a2d8a744b31582e477ad868b6e89786e7
+-r--------   1 wfink001 classes   148 Feb 17 21:51 294f4a6de64dd33a8dd81fe2faab76d39df659
+
+
+
+./.git/objects/ec:
+drwx------   2 wfink001 classes  4096 Feb  1 20:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    88 Feb  1 20:42 bb10024ddc22e82fe1d6387aa46fa8fd3e2c82
+
+
+
+./.git/objects/bd:
+drwx------   2 wfink001 classes  4096 Feb  1 20:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   193 Feb  1 20:42 eb587ac3f032f7d3b76b4cb13df68c93f58492
+
+
+
+./.git/objects/d1:
+drwx------   2 wfink001 classes  4096 Feb  8 18:25 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   227 Feb  1 20:57 dd7708c973e469054f6b934ccc4839776c033f
+-r--------   1 wfink001 classes   184 Feb  8 18:25 8de6e9ff98c6cbeb4cde5c353bdbc1ca56e40d
+
+
+
+./.git/objects/d8:
+drwx------   2 wfink001 classes  4096 Feb  9 03:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    87 Feb  1 20:57 a81e14962d89c505bc0cc57b14a8f81f1e18d3
+-r--------   1 wfink001 classes   116 Feb  9 03:12 8003b06d9b48d10ee57cfa10c516ea02c0292a
+
+
+
+./.git/objects/2a:
+drwx------   2 wfink001 classes  4096 Feb  2 00:09 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   469 Feb  2 00:09 e39baa76a742d303058286b3cbba581a0b770c
+
+
+
+./.git/objects/87:
+drwx------   2 wfink001 classes  4096 Feb  2 00:09 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    87 Feb  2 00:09 7a18b521a2be04e9c40d19db7d33a02c3cc1a6
+
+
+
+./.git/objects/f3:
+drwx------   2 wfink001 classes  4096 Feb  9 04:50 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   208 Feb  2 00:09 2e0a336728099e74ab8f68eedc382bf3465b8e
+-r--------   1 wfink001 classes  1160 Feb  8 18:11 6cff97eaaf6ee69f1fce2fc78f155f17796f26
+-r--------   1 wfink001 classes  1722 Feb  9 04:50 c7be5171e8b450af507043eaee997520c1e34a
+
+
+
+./.git/objects/ba:
+drwx------   2 wfink001 classes  4096 Feb  2 15:06 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   555 Feb  2 15:06 dd32e63ed1e832afbe69a8132ca234d7e65b05
+
+
+
+./.git/objects/51:
+drwx------   2 wfink001 classes  4096 Feb 23 01:37 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    88 Feb  2 15:06 5fd689335842ba9ae215891be30cb452f2bfad
+-r--------   1 wfink001 classes    88 Feb  2 18:34 be953f2aabbd1b5b5dd6162a0b8b2eace1c45f
+-r--------   1 wfink001 classes  2774 Feb 23 01:37 1ae8098c3594bdbce3814f6ccc6c58af1b1b35
+
+
+
+./.git/objects/46:
+drwx------   2 wfink001 classes  4096 Feb  9 04:43 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   184 Feb  2 15:06 b0bf7343953e7813009b8f87769bdfafe90380
+-r--------   1 wfink001 classes   116 Feb  9 04:43 c39e149d71cfbf5f3ce4f57d7567a02469ce29
+
+
+
+./.git/objects/fd:
+drwx------   2 wfink001 classes  4096 Feb  2 18:34 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   718 Feb  2 18:34 761b3bf3598829fbccdad1190e8e0daa94dc62
+
+
+
+./.git/objects/27:
+drwx------   2 wfink001 classes  4096 Feb  9 04:50 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   186 Feb  2 18:34 f78a1fea6b5d03786b2e204080a52ead36a876
+-r--------   1 wfink001 classes   116 Feb  8 16:06 498fba898b63cfb997b5ea5a68f5bf9f2bad5d
+-r--------   1 wfink001 classes   116 Feb  8 22:57 06c3fdb09debb7fbb4dc5ee06775a8425ed6fd
+-r--------   1 wfink001 classes   117 Feb  9 04:50 b9e7d4141942f46dc22e47ca0068a318dbcd36
+
+
+
+./.git/objects/b5:
+drwx------   2 wfink001 classes  4096 Feb  2 21:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   799 Feb  2 21:13 8b737b620dcd85c7fc7f0a3ace05fdedcf470a
+
+
+
+./.git/objects/c4:
+drwx------   2 wfink001 classes  4096 Feb 22 23:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   184 Feb  2 21:13 bbf0f7318682a2b127fb52021efe24327756d2
+-r--------   1 wfink001 classes   795 Feb  8 16:12 ecce735de6b86a1636cfff858cd466769897e5
+-r--------   1 wfink001 classes   176 Feb 22 23:13 f9367e293dde3fbedccab2e346eeafbc472be0
+
+
+
+./.git/objects/cb:
+drwx------   2 wfink001 classes  4096 Feb 22 23:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   793 Feb  2 21:29 94ae4ebe2cfb6987bceb8da54d08006a920e81
+-r--------   1 wfink001 classes   162 Feb 22 23:27 06dd099dbaeefc685789a79906c7512cf749d3
+
+
+
+./.git/objects/59:
+drwx------   2 wfink001 classes  4096 Feb  2 21:29 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    88 Feb  2 21:29 52b493ac9eb1054168293186262520fe6f46d6
+
+
+
+./.git/objects/45:
+drwx------   2 wfink001 classes  4096 Feb  2 21:29 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   188 Feb  2 21:29 4c06149a05ae094399d1bd68d4ac0c7e08f7dc
+
+
+
+./.git/objects/d6:
+drwx------   2 wfink001 classes  4096 Feb 13 11:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   817 Feb  2 22:03 7d8be0cb6231410094042e17ea4b6008a65975
+-r--------   1 wfink001 classes    87 Feb  3 14:02 61cfb98e344b3a551acd85cf157fdfeef1449b
+-r--------   1 wfink001 classes    88 Feb 13 11:12 d9c5f04be0d804f6a16e8e6020ec8e936cc6db
+
+
+
+./.git/objects/b8:
+drwx------   2 wfink001 classes  4096 Feb  2 22:03 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    87 Feb  2 22:03 753590d51be73ea280e01a394653370ca24efb
+
+
+
+./.git/objects/cd:
+drwx------   2 wfink001 classes  4096 Feb  2 22:03 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   190 Feb  2 22:03 c62ca217cf6ab326431fdf684dceafbe6a81a1
+
+
+
+./.git/objects/f6:
+drwx------   2 wfink001 classes  4096 Feb  2 22:14 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   833 Feb  2 22:14 7e1e03730e4c4c55430c12ad1f2f6f54422dd1
+
+
+
+./.git/objects/bc:
+drwx------   2 wfink001 classes  4096 Feb  2 22:17 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    87 Feb  2 22:17 7b7c9edbf07adb46d4e8a6ac32290ba5dd3d2b
+
+
+
+./.git/objects/fe:
+drwx------   2 wfink001 classes  4096 Feb  3 16:07 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   905 Feb  2 22:42 71841668aee1de460a3431b3ae271cc6cb4c45
+-r--------   1 wfink001 classes    87 Feb  3 12:25 ae1547c3db5f5fe2f8c106e2d0810b56748057
+-r--------   1 wfink001 classes   184 Feb  3 16:07 8b7691c82e0d41595845333614ef2fe99ff6ca
+
+
+
+./.git/objects/73:
+drwx------   2 wfink001 classes  4096 Feb  2 22:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    87 Feb  2 22:42 9f285972c303461c0140d985ef596bc0e8e73a
+
+
+
+./.git/objects/22:
+drwx------   2 wfink001 classes  4096 Feb 17 21:48 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   184 Feb  2 22:42 351263f4b3efa493b88c4e6f5c80c6e661b17d
+-r--------   1 wfink001 classes   148 Feb 17 21:48 45145e5cc8796f6b5d3806eba166f24f7a9a80
+
+
+
+./.git/objects/97:
+drwx------   2 wfink001 classes  4096 Feb  3 00:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1217 Feb  3 00:12 b05de704fe5d773fe8dbbec620cec45522ef22
+
+
+
+./.git/objects/98:
+drwx------   2 wfink001 classes  4096 Feb 13 11:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    88 Feb  3 00:12 22cd7db5278cd415bc71e8509376adb7c6ef97
+-r--------   1 wfink001 classes  2021 Feb 13 11:12 aacb139e7f8e94a81dec61b0dad85b1fddfe95
+
+
+
+./.git/objects/3e:
+drwx------   2 wfink001 classes  4096 Feb  3 09:33 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   201 Feb  3 00:12 d11c0b7a0f7ec722e82207f212ce77a8b3bcdc
+-r--------   1 wfink001 classes   203 Feb  3 09:33 3cb1177b61d7d6d2074e057fb870f37d3f50b9
+
+
+
+./.git/objects/01:
+drwx------   2 wfink001 classes  4096 Feb  3 09:33 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1416 Feb  3 09:33 f15901405d51b343faafaef539fc8673be6b14
+
+
+
+./.git/objects/ab:
+drwx------   2 wfink001 classes  4096 Feb  3 09:33 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    87 Feb  3 09:33 3afb78dc3c52a9d804d5a90e1e0d25ebddfb0a
+
+
+
+./.git/objects/86:
+drwx------   2 wfink001 classes  4096 Feb  3 12:25 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1823 Feb  3 12:25 2a4badd37f655f43bc8b23bb927493bf5f5fd0
+
+
+
+./.git/objects/1d:
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   198 Feb  3 12:25 9a8d46da47ad6bc4b8113b70281e21c5171cd7
+-r--------   1 wfink001 classes   121 Feb 13 11:13 4e94fe61e5e8cdd72a3001b482c2a63fe7ecd7
+
+
+
+./.git/objects/80:
+drwx------   2 wfink001 classes  4096 Feb  3 14:02 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1832 Feb  3 14:02 42c38a3f535f749eaa24f9396530ce45a7bb7d
+
+
+
+./.git/objects/6b:
+drwx------   2 wfink001 classes  4096 Feb  3 14:02 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   188 Feb  3 14:02 5e0ad6ebb758cb371e54e1bf1366dcf8b4fe84
+
+
+
+./.git/objects/33:
+drwx------   2 wfink001 classes  4096 Feb 22 23:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2036 Feb  3 15:31 d6e22d4e28479b68fc29001aff27962d00f6e8
+-r--------   1 wfink001 classes  2416 Feb 22 23:13 5601d0ef27b721fcd4317403eee03abaf89101
+
+
+
+./.git/objects/89:
+drwx------   2 wfink001 classes  4096 Feb  3 15:31 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    87 Feb  3 15:31 fef4e7bcc944b05a41348cbdd113e253489ec7
+
+
+
+./.git/objects/96:
+drwx------   2 wfink001 classes  4096 Feb  3 15:31 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   223 Feb  3 15:31 ef2a883f9b778818f8de3c327de6173c17ff81
+
+
+
+./.git/objects/7a:
+drwx------   2 wfink001 classes  4096 Feb 23 00:26 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1626 Feb  3 16:07 66a182d52300ce93c22b41cda9ff2453db176e
+-r--------   1 wfink001 classes  2632 Feb 23 00:26 1a385923a0d4b6b9ed83f987840c466c04d499
+
+
+
+./.git/objects/28:
+drwx------   2 wfink001 classes  4096 Feb  3 16:07 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes    88 Feb  3 16:07 bb4f149c1b8f48d6d88eccfde1edd43847145f
+
+
+
+./.git/objects/5a:
+drwx------   2 wfink001 classes  4096 Feb  5 23:20 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   342 Feb  5 23:20 21b220290e8da28acf1a2c954b4f566aa08e1c
+
+
+
+./.git/objects/69:
+drwx------   2 wfink001 classes  4096 Feb  5 23:20 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   115 Feb  5 23:20 da2e00b9d780e2c106d11037b36b66b6d15648
+
+
+
+./.git/objects/56:
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   609 Feb  8 14:32 6b88e8ea43bc9597012cc47fc0c579883d2182
+-r--------   1 wfink001 classes   192 Feb 13 11:13 3254ddec536e26266bb430693399b7ee5353b3
+
+
+
+./.git/objects/e4:
+drwx------   2 wfink001 classes  4096 Feb  8 14:32 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 14:32 7abb08bd45c5c8ad5261fe6950b9788f2ede86
+
+
+
+./.git/objects/48:
+drwx------   2 wfink001 classes  4096 Feb  8 14:32 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   179 Feb  8 14:32 e292318d6797b639ef81000ba9f23022b98526
+
+
+
+./.git/objects/e9:
+drwx------   2 wfink001 classes  4096 Feb  8 16:06 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   803 Feb  8 16:06 fb3122ac141fb673e897b74fab9766d9a00462
+
+
+
+./.git/objects/41:
+drwx------   2 wfink001 classes  4096 Feb  9 03:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   184 Feb  8 16:06 ac7d8517e704db356d15de08e1b08b870d903b
+-r--------   1 wfink001 classes   161 Feb  9 03:12 330b5f86adcd3c2f81012db413714ddb3a4bc9
+
+
+
+./.git/objects/79:
+drwx------   2 wfink001 classes  4096 Feb  8 16:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 16:12 41da9c9633898f73ec1826018b61d5c95241ce
+
+
+
+./.git/objects/f2:
+drwx------   2 wfink001 classes  4096 Feb  8 16:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   175 Feb  8 16:12 d497b7b5c3be4b2fe31df9c2099935dda16ff3
+
+
+
+./.git/objects/e0:
+drwx------   2 wfink001 classes  4096 Feb  8 16:17 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   812 Feb  8 16:17 4e05ce31c839f7b64bc512993eebe0fe921ad1
+
+
+
+./.git/objects/8d:
+drwx------   2 wfink001 classes  4096 Feb 22 23:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 16:17 ce41fad465f10d540b3458f11109bee1d6de2d
+-r--------   1 wfink001 classes   159 Feb 22 23:42 433aaa4ecd27b4af25398f3f7ce98e5ece5c1e
+
+
+
+./.git/objects/c5:
+drwx------   2 wfink001 classes  4096 Feb  8 16:17 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   180 Feb  8 16:17 ca3cb0b02a5ff6b60f0ea5f4abb4cc6726dd21
+
+
+
+./.git/objects/25:
+drwx------   2 wfink001 classes  4096 Feb  8 16:33 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   859 Feb  8 16:33 f229e5520f4dfe87bc7f27bb943a77319e92df
+
+
+
+./.git/objects/e8:
+drwx------   2 wfink001 classes  4096 Feb 23 01:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   162 Feb  8 16:33 047cc2e9a3d7842828e7ee5141c68debd09506
+-r--------   1 wfink001 classes  2202 Feb 17 21:50 2c11c9c6e8ac72aca756b438d584a465ec890e
+-r--------   1 wfink001 classes   170 Feb 23 01:27 c244afde823a9d9f640e6c52ba2af51ac21a23
+
+
+
+./.git/objects/7e:
+drwx------   2 wfink001 classes  4096 Feb  8 16:49 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   917 Feb  8 16:49 199165e7a9ab0fc39314278f9b361d97727f50
+
+
+
+./.git/objects/1a:
+drwx------   2 wfink001 classes  4096 Feb  8 18:47 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 16:49 4876cca37e562af6c8c66bfb9a5d4914ec796c
+-r--------   1 wfink001 classes   116 Feb  8 18:47 858df17fbf33fbc80976c7670d97be0a5a8f0f
+
+
+
+./.git/objects/a1:
+drwx------   2 wfink001 classes  4096 Feb  8 16:49 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   177 Feb  8 16:49 08d234d9c428ffb7b38dc23deb7e21810cd3e5
+
+
+
+./.git/objects/05:
+drwx------   2 wfink001 classes  4096 Feb  8 18:11 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 18:11 7d9e908325debda611f65fad1af5998870d287
+
+
+
+./.git/objects/7f:
+drwx------   2 wfink001 classes  4096 Feb  9 04:50 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   177 Feb  8 18:11 9306b86455e1349c04ef578bd4a6b9c8fea6c9
+-r--------   1 wfink001 classes   165 Feb  9 04:50 401ac3c06b93c3a912108fa65f2a1c236e08f5
+
+
+
+./.git/objects/4b:
+drwx------   2 wfink001 classes  4096 Feb  8 18:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1162 Feb  8 18:12 e9c864bf5e8b3694cce1da20f6971d8ec0ff61
+
+
+
+./.git/objects/db:
+drwx------   2 wfink001 classes  4096 Feb  8 18:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 18:12 1eb8191ce7cfa124b43d9feb2b57f2a0edb586
+
+
+
+./.git/objects/c8:
+drwx------   2 wfink001 classes  4096 Feb  8 18:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   180 Feb  8 18:12 23b10b1691a653480df03cb13d2945a3bed34e
+
+
+
+./.git/objects/21:
+drwx------   2 wfink001 classes  4096 Feb  8 18:25 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1175 Feb  8 18:25 ee9d8bde3fef36a948cf233f2d3f56b5b6343e
+
+
+
+./.git/objects/65:
+drwx------   2 wfink001 classes  4096 Mar  9 15:20 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 18:25 f69c8d01b88eda5fd8db1fcd7e4de756822a71
+-r--------   1 wfink001 classes   149 Feb  9 04:57 8cca85e74da010364538bd66ecac0f90cf43cd
+-r--------   1 wfink001 classes  2011 Feb 13 11:19 e368e84ac0f32087d3cbe6d0983bf4b695479c
+-r--------   1 wfink001 classes  4516 Mar  9 15:20 f3108e4e3a0783829ef77a1d5060cbc94abdcc
+
+
+
+./.git/objects/43:
+drwx------   2 wfink001 classes  4096 Feb  8 18:47 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1194 Feb  8 18:47 d93590f2040eec8df84b379c47e1d797530121
+
+
+
+./.git/objects/67:
+drwx------   2 wfink001 classes  4096 Feb  8 18:47 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   186 Feb  8 18:47 1c038da2b422b4a9758fbccab5667f939288a8
+
+
+
+./.git/objects/6c:
+drwx------   2 wfink001 classes  4096 Feb  9 04:44 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1295 Feb  8 19:28 01ca00dc16f43d9325bb860b5506cf765104f3
+-r--------   1 wfink001 classes   115 Feb  8 19:28 7f569fe2efc2fedb51e4da41bdc0389d050f1f
+-r--------   1 wfink001 classes   172 Feb  9 04:44 d50ad5562b30297ff50eda81dc35c04cb98bf6
+
+
+
+./.git/objects/ee:
+drwx------   2 wfink001 classes  4096 Feb  8 19:28 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   180 Feb  8 19:28 40520583c20c935878f109c84b59aaa5600754
+
+
+
+./.git/objects/f0:
+drwx------   2 wfink001 classes  4096 Feb  8 20:59 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1369 Feb  8 20:13 ac1baba50f7b27b5a7988e04e5ed1bd9236ad9
+-r--------   1 wfink001 classes  1368 Feb  8 20:59 91422197b0739695a5aa5f18311f589a220a0a
+
+
+
+./.git/objects/eb:
+drwx------   2 wfink001 classes  4096 Feb  8 20:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 20:13 6cebf05e6e7be2355ef036819ceb329e639860
+
+
+
+./.git/objects/b4:
+drwx------   2 wfink001 classes  4096 Feb  8 20:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   191 Feb  8 20:13 b01caf1c1ac234d9d7ce08847493cc0c3a9c90
+
+
+
+./.git/objects/8a:
+drwx------   2 wfink001 classes  4096 Feb  8 20:59 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  8 20:59 340bafdfd8e0f6b07d4b35aad124251c6cc4c0
+
+
+
+./.git/objects/76:
+drwx------   2 wfink001 classes  4096 Feb  8 20:59 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   180 Feb  8 20:59 c69bcbb837b11459225a4426d3e1a113e35edf
+
+
+
+./.git/objects/93:
+drwx------   2 wfink001 classes  4096 Feb  8 22:57 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1884 Feb  8 22:57 cefc35a490c874a861506d356d63baa6b0034e
+
+
+
+./.git/objects/11:
+drwx------   2 wfink001 classes  4096 Feb  8 22:57 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   164 Feb  8 22:57 e41f5d2eec92f5787a01027f0cb3f2cc36b4a3
+
+
+
+./.git/objects/f5:
+drwx------   2 wfink001 classes  4096 Feb  9 03:12 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2131 Feb  9 03:12 7498ac609d4bad71d030ece88c8d471f567a6a
+
+
+
+./.git/objects/7b:
+drwx------   2 wfink001 classes  4096 Feb 25 13:51 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   400 Feb  9 04:43 c7d2c711c0718271e4d8ce76aa33bf02de4b81
+-r--------   1 wfink001 classes  3222 Feb 25 13:51 c2d7e781c71f622bf73fd3bdaebd10cb18f289
+
+
+
+./.git/objects/e3:
+drwx------   2 wfink001 classes  4096 Feb  9 04:43 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   165 Feb  9 04:43 4b10a74c3edbc7b2ead4efbc9c9b6648470975
+
+
+
+./.git/objects/ae:
+drwx------   2 wfink001 classes  4096 Feb  9 04:44 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2139 Feb  9 04:44 2601daac68a1ae934d69ebf2e754122fee215e
+
+
+
+./.git/objects/f7:
+drwx------   2 wfink001 classes  4096 Feb 17 21:48 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   116 Feb  9 04:44 1235fc0f0da90c3e0734080041c7b1e913e976
+-r--------   1 wfink001 classes   182 Feb 17 21:48 7f8e54085b97bde720573b80718ad6fa5f9505
+
+
+
+./.git/objects/1f:
+drwx------   2 wfink001 classes  4096 Feb  9 04:54 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   149 Feb  9 04:54 449e0a55043693a73fddd5f94f6d18a4e066c2
+
+
+
+./.git/objects/0e:
+drwx------   2 wfink001 classes  4096 Feb  9 04:55 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   125 Feb  9 04:55 4298515ba8281721384295162943eab6c82f19
+
+
+
+./.git/objects/9f:
+drwx------   2 wfink001 classes  4096 Feb  9 04:55 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   148 Feb  9 04:55 72a723d2fc314be0e62f918be51f5e3fd99669
+
+
+
+./.git/objects/9d:
+drwx------   2 wfink001 classes  4096 Feb 17 21:51 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   168 Feb  9 04:55 175b5831fc839e483d7413c9aa99b307c0adb9
+-r--------   1 wfink001 classes   148 Feb 17 21:51 a22db9969ed5cdfca863e78b19fab0e41f55e1
+
+
+
+./.git/objects/60:
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   182 Feb 13 11:12 7a20067284ceb8b75b061c76a219f7a2221533
+-r--------   1 wfink001 classes   130 Feb 13 11:13 13b48ba109b407f17df55269512fa5d540a325
+
+
+
+./.git/objects/6d:
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   174 Feb 13 11:13 4b3940e36e44489a4efdbf5dbd42af503ad28a
+
+
+
+./.git/objects/12:
+drwx------   2 wfink001 classes  4096 Feb 13 11:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2239 Feb 13 11:13 cb22b9b792f6fbe3e8921d09a3955c6415ecc7
+
+
+
+./.git/objects/58:
+drwx------   2 wfink001 classes  4096 Feb 13 11:19 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   149 Feb 13 11:19 46d076ef41ea183b4d3575af130e646092b330
+
+
+
+./.git/objects/61:
+drwx------   2 wfink001 classes  4096 Feb 13 11:19 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   183 Feb 13 11:19 aa2624281c67ff22c608eda88e35d7e75dced8
+
+
+
+./.git/objects/3c:
+drwx------   2 wfink001 classes  4096 Feb 17 21:47 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2080 Feb 17 21:47 5de0b6ffcda0791edb12086cec035a0685572b
+
+
+
+./.git/objects/19:
+drwx------   2 wfink001 classes  4096 Feb 17 21:50 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   148 Feb 17 21:50 67349f89994e454f52a34ec3a4dc05daa3df3a
+
+
+
+./.git/objects/d3:
+drwx------   2 wfink001 classes  4096 Feb 17 21:50 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   163 Feb 17 21:50 8e001540a94c76c34a304e91a6b1629b0f3c1f
+
+
+
+./.git/objects/dc:
+drwx------   2 wfink001 classes  4096 Feb 17 21:51 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   174 Feb 17 21:51 120a062a65ab41ecc6b4f1bc9e0f833d973532
+
+
+
+./.git/objects/a0:
+drwx------   2 wfink001 classes  4096 Feb 22 20:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   790 Feb 17 21:52 a9739ee9fa6f8d9457571cc564a6feb8ceec0c
+-r--------   1 wfink001 classes   176 Feb 22 20:42 6f5e40b093dc1bbd3339516a7f8551939429e4
+-r--------   1 wfink001 classes   166 Feb 22 20:42 adecfaef128d7b9ffea29b33c286bf7d2c4529
+
+
+
+./.git/objects/9e:
+drwx------   2 wfink001 classes  4096 Feb 22 23:13 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Feb 17 21:52 5f06bd2a1fca6b45e2ff57a3ee55ec8c477f3a
+-r--------   1 wfink001 classes   179 Feb 22 23:13 a6008545ee8f82e674382ce3d769bcfbb9e4dd
+
+
+
+./.git/objects/37:
+drwx------   2 wfink001 classes  4096 Feb 17 21:52 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   177 Feb 17 21:52 8217f8f7ac2df0070c608c97eaeb2d90e6c3a1
+
+
+
+./.git/objects/b6:
+drwx------   2 wfink001 classes  4096 Feb 22 20:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2022 Feb 22 20:42 7d6a6c75936f145cb0d81ff550334b22fd81ce
+
+
+
+./.git/objects/0a:
+drwx------   2 wfink001 classes  4096 Feb 22 23:26 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2537 Feb 22 23:26 80d81c641403080df5983af00bd286b81cb5d6
+
+
+
+./.git/objects/4f:
+drwx------   2 wfink001 classes  4096 Feb 22 23:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Feb 22 23:27 918b4006aee49b407a8dd254423c59a9dbad4b
+
+
+
+./.git/objects/e5:
+drwx------   2 wfink001 classes  4096 Feb 22 23:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2575 Feb 22 23:42 5564e0359d69b29d90abe2a9a519d273ced11a
+
+
+
+./.git/objects/9b:
+drwx------   2 wfink001 classes  4096 Feb 22 23:42 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   177 Feb 22 23:42 741cee4fde7ff4888273dfa76cae7f2f572c8e
+
+
+
+./.git/objects/1b:
+drwx------   2 wfink001 classes  4096 Feb 23 00:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Feb 23 00:27 eb476fa272b7252869653bd48f5e869c1d9101
+
+
+
+./.git/objects/c1:
+drwx------   2 wfink001 classes  4096 Feb 23 00:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   165 Feb 23 00:27 02f4b4fe8a7fa86f1d485bb483647cdfba2564
+
+
+
+./.git/objects/c3:
+drwx------   2 wfink001 classes  4096 Feb 23 01:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  2767 Feb 23 01:27 148b7603b8f32fff5609c03f673bff804d2517
+
+
+
+./.git/objects/14:
+drwx------   2 wfink001 classes  4096 Feb 23 01:27 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Feb 23 01:27 bce03a7c5b2f93cb304b5cc241ebb845cdd470
+
+
+
+./.git/objects/83:
+drwx------   2 wfink001 classes  4096 Feb 23 01:37 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Feb 23 01:37 f4163e72f56447d81365a3178f806c1d55b95c
+
+
+
+./.git/objects/64:
+drwx------   2 wfink001 classes  4096 Feb 23 01:37 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   174 Feb 23 01:37 e449c16004f441314f2acc1e4f54fd340475ee
+
+
+
+./.git/objects/66:
+drwx------   2 wfink001 classes  4096 Feb 25 13:52 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Feb 25 13:52 72508742d6c107895400262dcc725da382ae16
+
+
+
+./.git/objects/aa:
+drwx------   2 wfink001 classes  4096 Feb 25 13:52 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   214 Feb 25 13:52 ecbb431233b8b2661bb712ae37db5f305fa723
+
+
+
+./.git/objects/a8:
+drwx------   2 wfink001 classes  4096 Mar  5 22:55 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  3478 Mar  5 22:55 6cb3399dc8168c72fb69b380fd20ae6e5a0100
+
+
+
+./.git/objects/2b:
+drwx------   2 wfink001 classes  4096 Mar  5 22:55 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   176 Mar  5 22:55 f817c0216d2d0f7169b326233c0853223d7f98
+
+
+
+./.git/objects/b0:
+drwx------   2 wfink001 classes  4096 Mar  9 15:19 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes  1593 Mar  9 15:19 82aca9891e7c525948ce17af7ea7c710ab3750
+
+
+
+./.git/objects/cc:
+drwx------   2 wfink001 classes  4096 Mar  9 15:19 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes 14221 Mar  9 15:19 9abbf534bab2887c1658598278543e672282e9
+
+
+
+./.git/objects/99:
+drwx------   2 wfink001 classes  4096 Mar  9 15:21 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   206 Mar  9 15:21 e2ba11f1cb1c631a36a2a1b016a1189690eaa6
+
+
+
+./.git/objects/da:
+drwx------   2 wfink001 classes  4096 Mar  9 15:21 .
+drwx------ 127 wfink001 classes  4096 Mar  9 15:21 ..
+-r--------   1 wfink001 classes   187 Mar  9 15:21 e1b6206af06bb8d63d4f5b97c075e7f4810c3d
+
+
+
+./.git/logs:
+drwx------   3 wfink001 classes  4096 Feb  1 19:39 .
+drwx------   8 wfink001 classes  4096 Mar  9 15:23 ..
+drwx------   4 wfink001 classes  4096 Feb  1 19:44 refs
+-rw-------   1 wfink001 classes 12044 Mar  9 15:23 HEAD
+
+
+
+./.git/logs/refs:
+drwx------   4 wfink001 classes  4096 Feb  1 19:44 .
+drwx------   3 wfink001 classes  4096 Feb  1 19:39 ..
+drwx------   2 wfink001 classes  4096 Feb 17 21:44 heads
+drwx------   3 wfink001 classes  4096 Feb  1 19:44 remotes
+
+
+
+./.git/logs/refs/heads:
+drwx------   2 wfink001 classes  4096 Feb 17 21:44 .
+drwx------   4 wfink001 classes  4096 Feb  1 19:44 ..
+-rw-------   1 wfink001 classes   811 Mar  9 15:23 master
+-rw-------   1 wfink001 classes  4043 Feb 13 11:13 exec
+-rw-------   1 wfink001 classes  3476 Feb  9 04:50 ls
+-rw-------   1 wfink001 classes  2585 Mar  9 15:21 redirect
+
+
+
+./.git/logs/refs/remotes:
+drwx------   3 wfink001 classes  4096 Feb  1 19:44 .
+drwx------   4 wfink001 classes  4096 Feb  1 19:44 ..
+drwx------   2 wfink001 classes  4096 Feb 17 21:53 origin
+
+
+
+./.git/logs/refs/remotes/origin:
+drwx------   2 wfink001 classes  4096 Feb 17 21:53 .
+drwx------   3 wfink001 classes  4096 Feb  1 19:44 ..
+-rw-------   1 wfink001 classes   306 Mar  9 15:24 master
+-rw-------   1 wfink001 classes  2769 Feb  3 14:03 exec
+-rw-------   1 wfink001 classes   858 Feb  9 03:31 ls
+-rw-------   1 wfink001 classes   286 Feb 22 23:59 redirect
+
+
+
+./fanny:
+drwx------   2 wfink001 classes  4096 Feb  8 16:39 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+-rw-------   1 wfink001 classes     0 Feb  8 16:39 thegoods.txt
+
+
+
+./.notrshell:
+drwx------   3 wfink001 classes  4096 Feb  2 00:12 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+drwx------   3 wfink001 classes  4096 Feb  2 00:12 .git
+
+
+
+./.notrshell/.git:
+drwx------   3 wfink001 classes  4096 Feb  2 00:12 .
+drwx------   3 wfink001 classes  4096 Feb  2 00:12 ..
+drwx------   5 wfink001 classes  4096 Feb  2 00:12 objects
+
+
+
+./.notrshell/.git/objects:
+drwx------   5 wfink001 classes  4096 Feb  2 00:12 .
+drwx------   3 wfink001 classes  4096 Feb  2 00:12 ..
+drwx------   2 wfink001 classes  4096 Feb  1 19:50 34
+drwx------   2 wfink001 classes  4096 Feb  1 19:50 df
+drwx------   2 wfink001 classes  4096 Feb  1 19:50 90
+
+
+
+./.notrshell/.git/objects/34:
+drwx------   2 wfink001 classes  4096 Feb  1 19:50 .
+drwx------   5 wfink001 classes  4096 Feb  2 00:12 ..
+-r--------   1 wfink001 classes   152 Feb  1 19:50 996b38dbd498a37878438543203a8c0efd5fef
+
+
+
+./.notrshell/.git/objects/df:
+drwx------   2 wfink001 classes  4096 Feb  1 19:50 .
+drwx------   5 wfink001 classes  4096 Feb  2 00:12 ..
+-r--------   1 wfink001 classes    54 Feb  1 19:50 9c3459104f32048a45bf9e845edca7ed6133ac
+
+
+
+./.notrshell/.git/objects/90:
+drwx------   2 wfink001 classes  4096 Feb  1 19:50 .
+drwx------   5 wfink001 classes  4096 Feb  2 00:12 ..
+-r--------   1 wfink001 classes   129 Feb  1 19:50 5802ac1bf0b697f0a96e533c9bcea5bb64541f
+
+
+
+./famcho:
+drwx------   3 wfink001 classes  4096 Feb  8 20:49 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+-rw-------   1 wfink001 classes     0 Feb  8 20:48 bootycalls.txt
+drwx------   2 wfink001 classes  4096 Feb  8 20:49 holla
+
+
+
+./famcho/holla:
+drwx------   2 wfink001 classes  4096 Feb  8 20:49 .
+drwx------   3 wfink001 classes  4096 Feb  8 20:49 ..
+
+
+
+./bin:
+drwx------   2 wfink001 classes  4096 Mar  9 17:39 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+-rwx------   1 wfink001 classes 100481 Mar  9 17:39 rshell
+-rwx------   1 wfink001 classes 34904 Mar  9 17:39 ls
+-rwx------   1 wfink001 classes 15697 Mar  9 17:39 cp
+-rwx------   1 wfink001 classes 100481 Mar  9 17:16 .nfs0000000000430b9600000194
+
+
+
+./obj:
+drwx------   2 wfink001 classes  4096 Feb  9 03:00 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+
+
+
+./tests:
+drwx------   2 wfink001 classes  4096 Mar  9 17:41 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+-rw-------   1 wfink001 classes 2072047 Mar  9 17:12 hw0run
+-rw-------   1 wfink001 classes   307 Mar  8 23:07 hw3
+-rw-------   1 wfink001 classes  1325 Mar  9 17:11 hw0
+-rw-------   1 wfink001 classes   562 Mar  9 17:33 hw1
+-rw-------   1 wfink001 classes 32768 Mar  9 17:43 hw1run
+
+
+
+./test:
+drwx------   2 wfink001 classes  4096 Mar  9 11:33 .
+drwx------  10 wfink001 classes  4096 Mar  9 17:39 ..
+
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin[K[K[K[K[K./bin/ls -alR[K[K[K[Kfamcho
+bootycalls.txt  holla  
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls famcho -a
+.  ..  bootycalls.txt  holla  
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls famcho -a[K[K[K[K[K[K[K[K[K-a famcho
+.  ..  bootycalls.txt  holla  
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls -a famcho[K[K[K[K[K[K[K[Kl famcho[K[K[K[K[K[K[K[K[K        -a         famcho
+.  ..  bootycalls.txt  holla  
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls         -a         famcho[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kbroken
+Open dir: No such file or directory
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls broken[K[K[K[K[K[K-p
+ls: "p" is not a recognized flag.
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls -p[K[K-alp
+ls: "p" is not a recognized flag.
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/ls -alp[2Pp[K[K[K[K[K[K[K[K[K[K[Kexit
+exit
+~
+wfink001@hammer $ exit
+exit
+
+Script done on Mon 09 Mar 2015 05:49:46 PM PDT

@@ -231,6 +231,8 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
         }
 
+        std::cout << endl;
+
         if (closedir(dirp) == -1){
             perror("Close dir");
         }

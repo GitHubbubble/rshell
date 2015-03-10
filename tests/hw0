@@ -1,0 +1,70 @@
+#this is a comment
+# testing one command:
+ls
+# testing with very little parameters:
+ls -a
+# testing with two parameters:
+ls -a -l
+# testing with three parameters:
+ls -a -l -h
+# testsing with all of the parameters:
+ls -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a -a
+
+#run rshell within rshell
+./bin/rshell
+exit
+
+#run some bogus command
+./bin/gravy
+
+#command seperated with spaces galore
+     ls     -a    -l      -r
+
+#simple ; constructor
+ls ; pwd
+
+#simple && good case
+true && echo success!
+
+#simple && bad case
+false && echo success!
+
+#simple || good case
+false || echo success!
+
+#simpe || bad case
+true || echo success!
+
+#more complicated cases
+echo hello! && pwd || echo goodbye!
+
+echo hello! || pwd && echo goodbye!
+
+echo hello! && echo hello! && echo hello! && echo hello! && echo hello! && echo hello! && echo hello!
+
+ls -a; echo hello && mkdir test || echo world; cd test
+
+#too much spacing
+echo testing   is     fun!         ;           ps   &&  echo  So cool!
+
+#too little spacing
+echo testing is fun!;pwd&&echo So cool!
+
+#exit by itself
+exit
+
+#exit with parameters
+exit -a -l
+
+#exit as a parameter
+ls exit
+
+#exit with other commands
+pwd; echo tinyman; exit
+
+#comments with a command
+ls -l #juice juice
+
+#comments with no spaces and command
+ls -a#cannonball
+

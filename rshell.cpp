@@ -397,7 +397,7 @@ int  breakitup (std::string hamma){
         dd =0;
 
     }
-    vectortest(gammy);
+    //vectortest(gammy);
     int holla = fcall(gammy);
 
     for (unsigned int i = 0; i < gammy.size(); i++){
@@ -545,11 +545,6 @@ int main(){
 
                int a = -1;
                char cancheck = 0;
-            std::cout << "mustpass" << (int) mustpass  << std::endl;
-
-                std::cout << "didpass" << (int)didpass << std::endl;
-
-
 
             if (mustpass == 2 && didpass == 1){
                 cancheck = 1;
@@ -562,8 +557,6 @@ int main(){
             }
             else
                 didpass = 0;
-
-            std::cout << "cancheck" << (int)cancheck << std::endl;
 
             if (cancheck){
 
@@ -579,10 +572,8 @@ int main(){
 
 
 
-            std::cout << "didpass2" << (int)didpass << std::endl;
             mustpass = conn.at(i).first;
 
-            std::cout << "mustpass2" << (int) mustpass << std::endl << std::endl;
             }
     }
     skippy:
