@@ -14,6 +14,16 @@
 #include <ios>
 using namespace std;
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
+
+
 /*
    * This is a BARE BONES example of how to use opendir/readdir/closedir.  Notice
    * that there is no error checking on these functions.  You MUST add error
@@ -103,8 +113,18 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
 
                 //============================================
-                if (!l)
-                    cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
+                if (!l){
+
+                    if (S_ISDIR(st.st_mode)){
+                        printf(ANSI_COLOR_GREEN "%s" ANSI_COLOR_RESET "  ", direntp->d_name);
+                    }
+                    else if (st.st_mode & S_IXUSR){
+
+                        printf(ANSI_COLOR_BLUE "%s" ANSI_COLOR_RESET "  ", direntp->d_name);
+                    }
+                    else
+                        cout << direntp->d_name << "  " ;  // use stat here to find attributes of file
+                }
                 else
                 {
 
@@ -145,7 +165,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
 
                     cout << gp -> gr_name << " ";
                     //size in bytes
-                    cout << setw(5);
+                    cout << setw(7);
                     cout << st.st_size << " ";
 
                     //Month of last access
@@ -221,7 +241,17 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                     // if (S_ISDIR(st.st_mode)) printf("\x1b[34");
                     //   if (direntp->d_name[0] == '.') printf("\x1b[47 ");
                     //   if (S_IXUSR & st.st_mode) printf("\x1b[34");
-                    cout << direntp->d_name ;
+
+                    if (S_ISDIR(st.st_mode)){
+                        printf(ANSI_COLOR_GREEN "%s" ANSI_COLOR_RESET "  ", direntp->d_name);
+                    }
+                    else if (st.st_mode & S_IXUSR){
+
+                        printf(ANSI_COLOR_BLUE "%s" ANSI_COLOR_RESET "  ", direntp->d_name);
+                    }
+                    else
+                        cout << direntp->d_name << "  " ;
+
                     //  printf("\x1b[0m");
                     cout << endl;
                     // use stat here to find attributes of file
@@ -264,8 +294,6 @@ int main(int argc, char *argv[]){
     char fR = 0;
 
     vector< char* > dirt;
-
-
 
     for(unsigned int i = 1; i < (unsigned int)argc; i++){
 
