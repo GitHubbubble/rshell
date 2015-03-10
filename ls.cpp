@@ -53,6 +53,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
             cout << dirName << ":"<< endl;
 
         }
+        char * mover;
         dirent *direntp;
         while ((direntp = readdir(dirp)))
         {
@@ -60,6 +61,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                 perror("Read dir");
                 exit(1);
             }
+
 
 
             if(a || direntp->d_name[0] != '.' ){
@@ -90,7 +92,7 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
                         if(S_ISDIR(st.st_mode))
                         {
 
-                            char * mover = new char[1024];
+                            mover = (char*) malloc (1024);
                             nextup.push_back(strcpy(mover, fileref));
 
                             //                                   cout << fileref << " or " << direntp->d_name << " is a directory!" << endl;
@@ -242,11 +244,16 @@ void lsrunner(char a, char l, char R, vector<char*> dirs ){
             lsrunner(a, l, R, nextup);
 
             for (unsigned int og; og < nextup.size(); og++){
-                delete [] nextup.at(og);
+                free( nextup.at(og));
             }
+
             nextup.clear();
         }
-
+        else{
+          /*  for (unsigned int og; og < nextup.size(); og++){
+                free( nextup.at(og));
+            }*/
+        }
     }
     return;
 }
