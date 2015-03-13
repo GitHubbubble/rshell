@@ -1,0 +1,40 @@
+Script started on Fri 13 Mar 2015 02:08:05 PM PDT
+~
+wfink001@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd src
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m PATH=c[K/class/classes/ucr[K[K[Kwfink001/src/bin/
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m cd[K[K./bin/rshell/ls/[K[K[K[K
+[31mrash-[34mwfink001[31m~/class/classes/wfink001/src$[0m ls
+README.md  [34mshelly[0m  [34mfile[0m  [34mspam[0m  [34msupershell[0m  Makefile  [34mscript.sh[0m  [34mlsy[0m  [32mfanny[0m  LICENSE  [32mfamcho[0m  output.txt  input.txt  [32mbin[0m  daboo  ls.o  [34mnewOutputFile2[0m  [32mobj[0m  readme  newOutputFile1  [34ma.out[0m  rm.cpp  [34mhandle_signals[0m  [34mdistance1[0m  mv.cpp  [34mpants.txt[0m  [34mwalf[0m  [34mwalf2[0m  [34mblastit[0m  [34msadness[0m  welf  [34mfancy[0m  [34mthanks[0m  [34mthanks2[0m  [34mfand[0m  [34mfans[0m  [34msjkim[0m  existingInputFile  [32mtests[0m  \  [32mtest[0m  [34mtk[0m  tokex.cpp  hs.cpp  typescript  [34minput[0m  [34mapp[0m  [34mpipetest[0m  [34mthefile[0m  [34mgreeting[0m  [34mappendy[0m  [34mloudgreeting[0m  [34mlisp[0m  [32msrc[0m  pipper  ls.cpp  rshell.cpp  [32msecretfolder[0m  
+[31mrash-[34mwfink001[31m~/class/classes/wfink001/src$[0m cd famcho
+[31mrash-[34mwfink001[31m~/class/classes/wfink001/src/famcho$[0m cd ..
+[31mrash-[34mwfink001[31m~/class/classes/wfink001/src$[0m cd /usr
+[31mrash-[34mwfink001[31m~/usr$[0m cd class     /class/classes/wfink001/src
+[31mrash-[34mwfink001[31m~/class/classes/wfink001/src$[0m ls  exit
+Ar revoir!
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m exit
+exit
+~
+wfink001@hammer $ exit
+exit
+
+Script done on Fri 13 Mar 2015 02:12:07 PM PDT
