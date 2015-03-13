@@ -1,0 +1,97 @@
+Script started on Fri 13 Mar 2015 01:01:41 PM PDT
+~
+wfink001@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cs[K[Kcd src
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m ./bin/rshell
+[31mrash-[34mwfink001[31m$[0m ls
+\      appendy	daboo		   famcho  fanny  greeting	  input      lisp	   ls.o      mv.cpp	     obj	 pipetest  README.md   sadness	     shelly  src	 tests	  thefile    typescript  welf
+a.out  bin	distance1	   fancy   fans   handle_signals  input.txt  loudgreeting  lsy	     newOutputFile1  output.txt  pipper    rm.cpp      script.sh     sjkim   supershell  thanks   tk	     walf
+app    blastit	existingInputFile  fand    file   hs.cpp	  LICENSE    ls.cpp	   Makefile  newOutputFile2  pants.txt	 readme    rshell.cpp  secretfolder  spam    test	 thanks2  tokex.cpp  walf2
+[31mrash-[34mwfink001[31m$[0m export PATH=$PATH: : class/         /class/classes/wfink001/src/bin
+execv: No such file or directory
+[31mrash-[34mwfink001[31m$[0m PATH=:/class/classes/wfink001/src/bin
+execv: No such file or directory
+[31mrash-[34mwfink001[31m$[0m ^Z
+[1]+  Stopped                 ./bin/rshell
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m (master) [0;36m$[0m PATH=PATH$[K[K[K[K[K:c[K/class/classes/wfink001/src/bin
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m fg
+./bin/rshell
+ls
+\      appendy	daboo		   famcho  fanny  greeting	  input      lisp	   ls.o      mv.cpp	     obj	 pipetest  README.md   sadness	     shelly  src	 tests	  thefile    typescript  welf
+a.out  bin	distance1	   fancy   fans   handle_signals  input.txt  loudgreeting  lsy	     newOutputFile1  output.txt  pipper    rm.cpp      script.sh     sjkim   supershell  thanks   tk	     walf
+app    blastit	existingInputFile  fand    file   hs.cpp	  LICENSE    ls.cpp	   Makefile  newOutputFile2  pants.txt	 readme    rshell.cpp  secretfolder  spam    test	 thanks2  tokex.cpp  walf2
+[31mrash-[34mwfink001[31m$[0m ^Z
+[1]+  Stopped                 ./bin/rshell
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m pa[K[KPATH
+bash: PATH: command not found
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m $PATH
+bash: :/class/classes/wfink001/src/bin: No such file or directory
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m pwd
+/class/classes/wfink001/src
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m pwd$PATH[1PPATH[2PfgPATH=:/class/classes/wfink001/src/bin[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfg[K[K[Kvim [K[K[K[Kvim pat[K[K[K[K[K[K[Kfg
+./bin/rshell
+pwd
+/class/classes/wfink001/src
+[31mrash-[34mwfink001[31m$[0m $PATH
+execv: No such file or directory
+[31mrash-[34mwfink001[31m$[0m ^C^C^C^C^C^C^C
+[31mrash-[34mwfink001[31m$[0m cd famcho
+/class/classes/wfink001/src/famcho
+[31mrash-[34mwfink001[31m$[0m cd ..
+/class/classes/wfink001/src
+[31mrash-[34mwfink001[31m$[0m cd fam   ./famcho
+/class/classes/wfink001/src/famcho
+[31mrash-[34mwfink001[31m$[0m cd ..
+/class/classes/wfink001/src
+[31mrash-[34mwfink001[31m$[0m cd /famcho
+chdir: No such file or directory
+[31mrash-[34mwfink001[31m$[0m cd / ./usr
+chdir: No such file or directory
+[31mrash-[34mwfink001[31m$[0m cd/  /usr
+/usr
+[31mrash-[34mwfink001[31m$[0m cd  /  /class/classes/wfink001/src
+/class/classes/wfink001/src
+[31mrash-[34mwfink001[31m$[0m ls
+\      appendy	daboo		   famcho  fanny  greeting	  input      lisp	   ls.o      mv.cpp	     obj	 pipetest  README.md   sadness	     shelly  src	 tests	  thefile    typescript  welf
+a.out  bin	distance1	   fancy   fans   handle_signals  input.txt  loudgreeting  lsy	     newOutputFile1  output.txt  pipper    rm.cpp      script.sh     sjkim   supershell  thanks   tk	     walf
+app    blastit	existingInputFile  fand    file   hs.cpp	  LICENSE    ls.cpp	   Makefile  newOutputFile2  pants.txt	 readme    rshell.cpp  secretfolder  spam    test	 thanks2  tokex.cpp  walf2
+[31mrash-[34mwfink001[31m$[0m cd f ./  famcho
+/class/classes/wfink001/src/famcho
+[31mrash-[34mwfink001[31m$[0m ls
+bootycalls.txt	holla
+[31mrash-[34mwfink001[31m$[0m cd /usr
+/usr
+[31mrash-[34mwfink001[31m$[0m ls
+bin  csshare  etc  games  include  lib	lib64  libexec	local  sbin  share  src  tmp
+[31mrash-[34mwfink001[31m$[0m cd c /class/classes/wfink001/src
+/class/classes/wfink001/src
+[31mrash-[34mwfink001[31m$[0m cd secretfolder
+chdir: Permission denied
+[31mrash-[34mwfink001[31m$[0m exit
+Ar revoir!
+[s%%%%%%%%%%[u[0;32mwfink001[0;36m@[0;32mcs100[0;36m:[0;32m~/src[0;95m [0;36m$[0m exit
+exit
+~
+wfink001@hammer $ exit
+exit
+
+Script done on Fri 13 Mar 2015 01:09:09 PM PDT
